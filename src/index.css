@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  color: #222222;
+  font-family: "Montserrat", sans-serif;
+}
+
+thead {
+  font-weight: 500 !important;
+}
+
+.app-width {
+  @apply max-w-[1400px] mx-auto px-5 lg:px-10;
+}
+
+.home {
+  background: url(./assets/images/hero-bg-2.png),
+    url(./assets/images/hero-bg.png);
+}
+
+.header {
+  background: url(./assets/images/header-img.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.auth {
+  background: url(./assets/images/auth.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.mantine-LoadingOverlay-root {
+  position: fixed !important;
+  z-index: 1000 !important;
+  width: 100%;
+  height: 100%;
+}
+label {
+  font-weight: 600 !important;
+  margin-bottom: 6px;
+}
+
+button.mantine-active.mantine-Pagination-control {
+  color: #232323 !important;
+}
+
+.hero-bg {
+  background: url(./assets/png/hero-bg.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 12;
+}
