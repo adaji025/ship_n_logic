@@ -9,7 +9,7 @@ const ButtonComp = ({ text, onclick }: IProps) => {
     <Button
       onClick={onclick}
       size="lg"
-      className="bg-primary px-12 rounded-full font-thin hover:scale-105 duration-300"
+      className="bg-primary px-12 rounded-full font-extralight hover:scale-105 duration-300"
     >
       {text}
     </Button>

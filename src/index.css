@@ -15,23 +15,10 @@ thead {
   @apply max-w-[1400px] mx-auto px-5 lg:px-10;
 }
 
-.home {
-  background: url(./assets/images/hero-bg-2.png),
-    url(./assets/images/hero-bg.png);
-}
 
-.header {
-  background: url(./assets/images/header-img.png);
-  background-size: cover;
-  background-repeat: no-repeat;
-}
 
-.auth {
-  background: url(./assets/images/auth.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-}
+
+
 
 .mantine-LoadingOverlay-root {
   position: fixed !important;
@@ -52,5 +39,22 @@ button.mantine-active.mantine-Pagination-control {
   background: url(./assets/png/hero-bg.png);
   background-repeat: no-repeat;
   background-size: cover;
-  opacity: 12;
+}
+
+.subscribe {
+  /* background: url(./assets/png/footer-3D.png); */
+  background-color: rgba(42, 118, 195, 1);
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+.subscribe::before {
+ content: ""; 
+ position: absolute;
+ width: 100%;
+ height: 100%;
+ top: 0;
+ left: 0;
+ z-index: -1;
+ background-color: rgba(42, 118, 195, 0);
 }

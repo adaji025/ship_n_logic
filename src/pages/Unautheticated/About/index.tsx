@@ -5,6 +5,9 @@ import AboutComp from "./components/AboutComp";
 import GetStarted from "./components/GetStarted";
 import Experience from "./components/Experience";
 import Benefits from "./components/Benefits";
+import Faq from "./components/Faq";
+import Subscribe from "./components/Subscribe";
+import Footer from "../../../components/Unauthenticated/components/Footer";
 
 const About = () => {
   return (
@@ -12,7 +15,7 @@ const About = () => {
       <div className="min-h-screen">
         <Navbar />
         <div className="hero-bg min-h-screen flex-1 flex flex-col justify-center items-center">
-          <div className="app-width mt-10">
+          <div className="app-width mt-28">
             <div className="font-medium text-[32px] max-w-[836px] mx-auto text-center">
               Unlock the Power of Data: Streamline Your Workflow with
               Ship N' Logic!
@@ -31,6 +34,11 @@ const About = () => {
       <GetStarted />
       <Experience />
       <Benefits />
+      <Faq />
+      <div className="bg-primary">
+        <Subscribe />
+        <Footer />
+      </div>
     </Fragment>
   );
 };
