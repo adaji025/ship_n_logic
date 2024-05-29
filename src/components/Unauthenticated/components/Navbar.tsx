@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import styles from "./Navbar.module.css";
 import { Button } from "@mantine/core";
@@ -12,11 +13,11 @@ const navMenuItems = [
   },
   {
     title: "FAQ",
-    url: "/faq",
+    url: "#faq",
   },
   {
     title: "Benefits",
-    url: "/benefits",
+    url: "#benefits",
   },
 ];
 
@@ -28,7 +29,7 @@ const Navbar = () => {
   return (
     <div className="z-[999] bg-white text-black  w-full fixed top-0 shadow">
       <nav
-        className={`px-5 lg:px-12 max-w-[1440px] flex justify-between ${styles.navbarItems}`}
+        className={`px-5 lg:px-12 max-w-[1440px] grid grid-cols-3 justify-between ${styles.navbarItems}`}
       >
         <div>
           <img src={Logo} alt="" />
@@ -49,19 +50,18 @@ const Navbar = () => {
           }`}
         >
           {navMenuItems.map((menu, idx) => (
-            <div
-              key={idx}
-              className={`flex gap-2 items-center relative font-semibold border-b border-transparent text-base md:text-lg cursor-pointer hover:border-pink hover:lg:text-primary-green-50 hover:lg:border-primary-green-50   transition- duration-200 ${
-                router.pathname === menu.url
-                  ? "lg:border-primary lg:text-primary-green-50"
-                  : ""
-              } `}
-              onClick={() => {
-                navigate(menu.url);
-              }}
-            >
-              {menu.title}
-            </div>
+            <HashLink smooth to={menu.url}>
+              <div
+                key={idx}
+                className={`flex gap-2 items-center relative font-semibold border-b border-transparent text-base md:text-lg cursor-pointer hover:border-pink hover:lg:text-primary-green-50 hover:lg:border-primary-green-50   transition- duration-200 ${
+                  router.pathname === menu.url
+                    ? "lg:border-primary lg:text-primary-green-50"
+                    : ""
+                } `}
+              >
+                {menu.title}
+              </div>
+            </HashLink>
           ))}
 
           <div
@@ -77,7 +77,7 @@ const Navbar = () => {
             Sign Up
           </div>
         </div>
-        <div className="flex gap-5">
+        <div className="flex justify-end gap-5">
           <Button
             size="md"
             className="bg-transparent hover:bg-primary/80 hidden lg:block text-black rounded-full duration-300"

@@ -50,22 +50,26 @@ const Benefits = () => {
     );
   };
   return (
-    <div className="bg-[#F1E9E680] py-20 mt-20">
-      <div className="app-width">
-        <div className="text-center">
-          <h2 className="text-2xl font-medium">Benefits</h2>
-          <div className="mt-3">What you get to enjoy with Ship N' Logic.</div>
-        </div>
+    <div className="mt-32">
+      <div id="benefits" className="bg-[#F1E9E680] py-20">
+        <div className="app-width">
+          <div className="text-center">
+            <h2 className="text-2xl font-medium mt-10">Benefits</h2>
+            <div className="mt-3">
+              What you get to enjoy with Ship N' Logic.
+            </div>
+          </div>
 
-        <div className="mt-10 flex flex-wrap justify-center gap-10">
-          {benefitData.map((item, index) => (
-            <Card
-              key={index}
-              image={item.image}
-              text={item.text}
-              title={item.title}
-            />
-          ))}
+          <div className="mt-10 flex flex-wrap justify-center gap-10 pb-10">
+            {benefitData.map((item, index) => (
+              <Card
+                key={index}
+                image={item.image}
+                text={item.text}
+                title={item.title}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </div>

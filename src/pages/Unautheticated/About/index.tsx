@@ -8,8 +8,12 @@ import Benefits from "./components/Benefits";
 import Faq from "./components/Faq";
 import Subscribe from "./components/Subscribe";
 import Footer from "../../../components/Unauthenticated/components/Footer";
+import { useEffect } from "react";
 
 const About = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <Fragment>
       <div className="min-h-screen">
@@ -35,10 +39,8 @@ const About = () => {
       <Experience />
       <Benefits />
       <Faq />
-      <div className="bg-primary">
-        <Subscribe />
-        <Footer />
-      </div>
+      <Subscribe />
+      <Footer />
     </Fragment>
   );
 };

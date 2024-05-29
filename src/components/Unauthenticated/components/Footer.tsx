@@ -2,12 +2,14 @@ import Logo from "../../../assets/svg/logo-2.svg";
 import { CiYoutube } from "react-icons/ci";
 import { FaXTwitter } from "react-icons/fa6";
 import { FaInstagram, FaFacebookF } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const Footer = () => {
+  const navigate = useNavigate()
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-primary py-10 md:py-20 text-white">
+    <footer className="bg-primary py-14 md:py-20 mt-32 text-white">
       <div className="app-width">
         <div className="grid gap-10 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           <div className="font-extralight">
@@ -26,9 +28,9 @@ const Footer = () => {
           <div>
             <h2 className="font-semibold">Privacy and Security</h2>
             <div className="grid gap-3 mt-3 font-extralight">
-              <div>Privacy policy</div>
-              <div>Terms of Use</div>
-              <div>Cookie Policy</div>
+              <div className="cursor-pointer" onClick={() => navigate("/privacy-policy")}>Privacy policy</div>
+              <div className="cursor-pointer" onClick={() => navigate("/terms-of-use")}>Terms of Use</div>
+              <div className="cursor-pointer" onClick={() => navigate("/cookie-privacy")}>Cookie Policy</div>
             </div>
           </div>
           <div>
