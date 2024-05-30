@@ -113,7 +113,12 @@ const Register = () => {
             </div>
           </div>
 
-          <Button size="lg" radius="md" className="bg-primary mt-3 font-light">
+          <Button
+            size="lg"
+            radius="md"
+            className="bg-primary mt-3 font-light"
+            onClick={() => navigate("/verify-account")}
+          >
             Create new account
           </Button>
 
