@@ -1,13 +1,15 @@
 import { useState } from "react";
-import Logo from "../../../assets/svg/logo.svg";
+import { useNavigate } from "react-router-dom";
 import { CiLock, CiUnlock } from "react-icons/ci";
-import { Button, Checkbox } from "@mantine/core";
+import { Button } from "@mantine/core";
 import { FcGoogle } from "react-icons/fc";
 import { BiLogoApple } from "react-icons/bi";
-import { useNavigate } from "react-router-dom";
+import { RiErrorWarningLine } from "react-icons/ri";
+import Logo from "../../../assets/svg/logo.svg";
 
-const Login = () => {
+const Register = () => {
   const [seePw, setSeePw] = useState(false);
+  const [seeCpw, setSeeCpw] = useState(false);
 
   const navigate = useNavigate();
 
@@ -19,19 +21,42 @@ const Login = () => {
           Welcome to Ship N' Logic
         </div>
         <div className="text-center text-sm font-medium">
-          New to Ship N' Logic?{" "}
+          Already have an account?{" "}
           <span
             className="text-primary cursor-pointer"
-            onClick={() => navigate("/sign-up")}
+            onClick={() => navigate("/sign-in")}
           >
-            Sign up
+            Sign in
           </span>
         </div>
-        <div className="grid gap-3 w-full mt-10">
+        <div className="grid gap-4 w-full mt-10">
+          <div className="grid gap-1">
+            <label className="text-sm text-[#545454]" htmlFor="name">
+              Name
+            </label>
+            <input
+              type="text"
+              placeholder="Enter Name"
+              className="py-3 px-4 bg-[#F8F9FD] rounded-md outline-none"
+            />
+          </div>
           <div className="grid gap-1">
             <label className="text-sm text-[#545454]" htmlFor="email">
               Email
             </label>
+            <input
+              type="email"
+              placeholder="Enter Email"
+              className="py-3 px-4 bg-[#F8F9FD] rounded-md outline-none"
+            />
+          </div>
+          <div className="grid gap-1">
+            <div className="flex justify-between">
+              <label className="text-sm text-[#545454]" htmlFor="email">
+                Exception Alert Email
+              </label>
+              <RiErrorWarningLine />
+            </div>
             <input
               type="email"
               placeholder="Enter Email"
@@ -48,29 +73,48 @@ const Login = () => {
                 placeholder="********"
                 className="py-3 px-4 bg-[#F8F9FD] rounded-md outline-none"
               />
-              {seePw && (
+              {seeCpw && (
                 <CiLock
                   className="absolute right-2  top-[60%] cursor-pointer"
                   onClick={() => setSeePw(!seePw)}
                 />
               )}
-              {!seePw && (
+              {!seeCpw && (
                 <CiUnlock
                   className="absolute right-2  top-[60%] cursor-pointer"
                   onClick={() => setSeePw(!seePw)}
                 />
               )}
             </div>
-            <div className="flex items-center justify-between mt-2">
-              <Checkbox label="Remember me" className="text-[#545454]" />
-              <div className="text-sm text-[#545454] cursor-pointer">
-                Forgot Password?
-              </div>
+          </div>
+
+          <div>
+            <div className="grid gap-1 relative">
+              <label className="text-sm text-[#545454]" htmlFor="password">
+                Password
+              </label>
+              <input
+                type={seeCpw ? "text" : "password"}
+                placeholder="********"
+                className="py-3 px-4 bg-[#F8F9FD] rounded-md outline-none"
+              />
+              {seeCpw && (
+                <CiLock
+                  className="absolute right-2  top-[60%] cursor-pointer"
+                  onClick={() => setSeeCpw(!seeCpw)}
+                />
+              )}
+              {!seeCpw && (
+                <CiUnlock
+                  className="absolute right-2  top-[60%] cursor-pointer"
+                  onClick={() => setSeeCpw(!seeCpw)}
+                />
+              )}
             </div>
           </div>
 
           <Button size="lg" radius="md" className="bg-primary mt-3 font-light">
-            Log in
+            Create new account
           </Button>
 
           <div className="mt-5 text-center">OR</div>
@@ -91,4 +135,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
