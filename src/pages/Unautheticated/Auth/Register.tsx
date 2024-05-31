@@ -63,10 +63,11 @@ const Register = () => {
               className="py-3 px-4 bg-[#F8F9FD] rounded-md outline-none"
             />
           </div>
+          
           <div>
             <div className="grid gap-1 relative">
               <label className="text-sm text-[#545454]" htmlFor="password">
-                Password
+              Confirm password
               </label>
               <input
                 type={seePw ? "text" : "password"}

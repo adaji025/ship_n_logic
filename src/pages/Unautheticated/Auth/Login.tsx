@@ -1,10 +1,10 @@
 import { useState } from "react";
-import Logo from "../../../assets/svg/logo.svg";
+import { useNavigate } from "react-router-dom";
 import { CiLock, CiUnlock } from "react-icons/ci";
 import { Button, Checkbox } from "@mantine/core";
-import { FcGoogle } from "react-icons/fc";
 import { BiLogoApple } from "react-icons/bi";
-import { useNavigate } from "react-router-dom";
+import { FcGoogle } from "react-icons/fc";
+import Logo from "../../../assets/svg/logo.svg";
 
 const Login = () => {
   const [seePw, setSeePw] = useState(false);

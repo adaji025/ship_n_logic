@@ -142,7 +142,16 @@ const BusinessInfo = () => {
             size="lg"
             radius="md"
             className="bg-primary mt-3 font-light"
-            onClick={() => navigate("/success")}
+            onClick={() =>
+              navigate("/success", {
+                state: {
+                  title: "Your information has been submitted.",
+                  text: "Yo will receive an email once your business has been verified.",
+                  btnText: "Proceed to Dashboard",
+                  route: "/",
+                },
+              })
+            }
           >
             Submit
           </Button>

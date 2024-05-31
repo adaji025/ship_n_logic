@@ -11,6 +11,9 @@ import Progress from "../../pages/Unautheticated/Auth/Progress";
 import PaymentOption from "../../pages/Unautheticated/Auth/PaymentOption";
 import BusinessInfo from "../../pages/Unautheticated/Auth/BusinessInfo";
 import Success from "../../pages/Unautheticated/Auth/Success";
+import ForgotPassword from "../../pages/Unautheticated/Auth/ForgotPassword";
+import VerifyOtp from "../../pages/Unautheticated/Auth/VerifyOtp";
+import ResetPassword from "../../pages/Unautheticated/Auth/ResetPassword";
 
 const Unauthenticated = () => {
   return (
@@ -18,7 +21,10 @@ const Unauthenticated = () => {
       <Route path="/" element={<About />} />
       <Route path="/sign-in" element={<Login />} />
       <Route path="/sign-up" element={<Register />} />
+      <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/verify-account" element={<Otp />} />
+      <Route path="/verify-otp" element={<VerifyOtp />} />
+      <Route path="/reset-password" element={<ResetPassword />} />
       <Route path="/link" element={<Link />} />
       <Route path="/progress" element={<Progress />} />
       <Route path="/payment-option" element={<PaymentOption />} />
