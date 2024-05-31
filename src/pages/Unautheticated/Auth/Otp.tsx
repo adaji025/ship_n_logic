@@ -1,7 +1,9 @@
 import { Button, PinInput } from "@mantine/core";
 import Logo from "../../../assets/svg/logo.svg";
+import { useNavigate } from "react-router-dom";
 
 const Otp = () => {
+  const navigate = useNavigate();
   return (
     <div className="auth-bg min-h-screen flex justify-center w-full py-10">
       <div className="max-w-[450px] w-full h-min mt-10 rounded-[20px] bg-white px-10 pt-5 pb-20 flex flex-col justify-center items-center">
@@ -23,6 +25,7 @@ const Otp = () => {
           size="md"
           radius="md"
           className="bg-primary font-light w-[80%] mx-auto mt-10"
+          onClick={() => navigate("/link")}
         >
           Continue
         </Button>

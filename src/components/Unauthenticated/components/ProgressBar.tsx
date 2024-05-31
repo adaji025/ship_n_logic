@@ -3,17 +3,17 @@
 const ProgressBar = ({ progress }: { progress: number }) => {
   return (
     <div
-      style={{ border: "1px solid #ccc", width: "100%", borderRadius: "20px" }}
+      style={{ border: "1px solid #ccc", width: "100%", borderRadius: "16px" }}
     >
       <div
         style={{
           width: `${progress}%`,
-          height: "60px",
-          backgroundColor: progress < 100 ? "blue" : "green",
-          borderTopLeftRadius: "20px",
-          borderBottomLeftRadius: "20px",
-          borderTopRightRadius: progress < 100 ? "0px" : "20px",
-          borderBottomRightRadius: progress < 100 ? "0px" : "20px",
+          height: "46px",
+          backgroundColor: progress < 100 ? "blue" : "blue",
+          borderTopLeftRadius: "16px",
+          borderBottomLeftRadius: "16px",
+          borderTopRightRadius: progress < 100 ? "0px" : "16px",
+          borderBottomRightRadius: progress < 100 ? "0px" : "16px",
         }}
       ></div>
     </div>

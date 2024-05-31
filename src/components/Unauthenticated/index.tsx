@@ -8,6 +8,7 @@ import Register from "../../pages/Unautheticated/Auth/Register";
 import Otp from "../../pages/Unautheticated/Auth/Otp";
 import Link from "../../pages/Unautheticated/Auth/Link";
 import Progress from "../../pages/Unautheticated/Auth/Progress";
+import PaymentOption from "../../pages/Unautheticated/Auth/PaymentOption";
 
 const Unauthenticated = () => {
   return (
@@ -18,6 +19,7 @@ const Unauthenticated = () => {
       <Route path="/verify-account" element={<Otp />} />
       <Route path="/link" element={<Link />} />
       <Route path="/progress" element={<Progress />} />
+      <Route path="/payment-option" element={<PaymentOption />} />
       <Route path="/privacy-policy" element={<Privacy />} />
       <Route path="/terms-of-use" element={<Terms />} />
       <Route path="/cookie-privacy" element={<Cookie />} />
