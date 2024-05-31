@@ -26,6 +26,7 @@ const Link = () => {
           size="md"
           radius="md"
           className="font-light w-[80%] mx-auto mt-10 text-primary"
+          onClick={() => navigate("/business-info")}
         >
           Skip
         </Button>
