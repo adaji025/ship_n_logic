@@ -20,7 +20,7 @@ const Header = ({ open }: IProps) => {
           size={20}
           onClick={open}
         />
-        <div className="text-xl font-medium capitalize">
+        <div className="text-xl font-medium capitalize hidden sm:block">
           {location.pathname === "/" ? "Dashboard" : title}
         </div>
       </div>

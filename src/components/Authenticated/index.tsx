@@ -8,6 +8,8 @@ import SideNav from "./SideNav";
 import { Fragment } from "react";
 import { Drawer } from "@mantine/core";
 import Header from "./Header";
+import { Route, Routes } from "react-router-dom";
+import Dashboard from "../../pages/Authenticated/CustomerApp/Dashboard";
 
 const Authenticated = () => {
   const [opened, { toggle }] = useDisclosure();
@@ -20,7 +22,7 @@ const Authenticated = () => {
       </Drawer>
       <div className="flex items-start bg-[#F8F9FD]">
         <div
-          className={`hidden lg:flex flex-col static pb-7 top-0 min-h-screen bg-white w-full px-5 duration-300 ${
+          className={`hidden lg:flex flex-col sticky pb-7 top-0 min-h-screen bg-white w-full px-5 duration-300 ${
             !opened ? "max-w-[270px]" : "max-w-[100px] pt-5"
           }`}
         >
@@ -54,9 +56,11 @@ const Authenticated = () => {
           </div>
         </div>
 
-        <div className="w-full min-h-screen px-5 lg:px-10">
+        <div className="w-full min-h-screen px-5 lg:px-10 pb-10">
           <Header open={open} title="Dashboard" />
-          <div>main</div>
+          <Routes>
+            <Route path="/" element={<Dashboard />} />
+          </Routes>
         </div>
       </div>
     </Fragment>
