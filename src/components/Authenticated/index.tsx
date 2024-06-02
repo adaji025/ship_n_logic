@@ -7,17 +7,23 @@ import {
 import SideNav from "./SideNav";
 import { Fragment } from "react";
 import { Drawer } from "@mantine/core";
-import Header from "./Header";
 import { Route, Routes } from "react-router-dom";
 import Dashboard from "../../pages/Authenticated/CustomerApp/Dashboard";
+import CustomerData from "../../pages/Authenticated/CustomerApp/Customer";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
+import { closeModal } from "../../redux/features/modalSlice";
 
 const Authenticated = () => {
   const [opened, { toggle }] = useDisclosure();
-  const [showNav, { close, open }] = useDisclosure(false);
+  const dispatch = useDispatch();
+
+  const isOpen = useSelector((state: RootState) => state.user.modal.isOpen);
+  const close = () => dispatch(closeModal());
 
   return (
     <Fragment>
-      <Drawer opened={showNav} onClose={close} title="Authentication">
+      <Drawer opened={isOpen} onClose={close} title="Authentication">
         <SideNav opened={opened} close={close} />
       </Drawer>
       <div className="flex items-start bg-[#F8F9FD]">
@@ -57,9 +63,10 @@ const Authenticated = () => {
         </div>
 
         <div className="w-full min-h-screen px-5 lg:px-10 pb-10">
-          <Header open={open} title="Dashboard" />
+          {/* <Header open={open} title="Dashboard" /> */}
           <Routes>
             <Route path="/" element={<Dashboard />} />
+            <Route path="/customer-data" element={<CustomerData />} />
           </Routes>
         </div>
       </div>

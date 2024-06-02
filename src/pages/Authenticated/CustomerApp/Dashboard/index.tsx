@@ -7,11 +7,13 @@ import { Menu, Popover } from "@mantine/core";
 import { IoChevronDownSharp } from "react-icons/io5";
 import { Calendar } from "@mantine/dates";
 import { MdOutlineCalendarMonth } from "react-icons/md";
+import Header from "./components/Header";
 // import DashboardTable from "./components/Table";
 
 const Dashboard = () => {
   return (
     <div>
+      <Header />
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-10">
         <div className=" w-full bg-white p-5">
           <div className="flex justify-end ">
@@ -124,7 +126,7 @@ const Dashboard = () => {
             </Popover>
           </div>
         </div>
-{/* <DashboardTable /> */}
+
         <div className="mt-5 grid grid-cols-3 w-full">
           <div className="grid gap-5 text-sm">
             <div className="font-medium text-dark-gray text-base">Location</div>

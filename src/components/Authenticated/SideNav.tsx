@@ -72,7 +72,7 @@ const SideNav = ({ opened, close }: IProps) => {
       </div>
       <div className="flex items-center text-sm p-2 cursor-pointer gap-5">
         <CiLogout size={20} />
-        <div>Log Out</div>
+        {!opened && <div>Log Out</div>}
       </div>
     </div>
   );
