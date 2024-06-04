@@ -13,6 +13,7 @@ import CustomerData from "../../pages/Authenticated/CustomerApp/Customer";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import { closeModal } from "../../redux/features/modalSlice";
+import ShippingLabels from "../../pages/Authenticated/CustomerApp/ShippingLabels";
 
 const Authenticated = () => {
   const [opened, { toggle }] = useDisclosure();
@@ -62,11 +63,12 @@ const Authenticated = () => {
           </div>
         </div>
 
-        <div className="w-full min-h-screen px-5 lg:px-10 pb-10">
+        <div className="w-full min-h-screen px-5 lg:px-10 pb-10 overflow-hidden">
           {/* <Header open={open} title="Dashboard" /> */}
           <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/customer-data" element={<CustomerData />} />
+            <Route path="/shipping-labels" element={<ShippingLabels />} />
           </Routes>
         </div>
       </div>

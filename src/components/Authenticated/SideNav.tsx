@@ -54,7 +54,7 @@ const SideNav = ({ opened, close }: IProps) => {
       <div className="grid gap-5">
         {data.map((item, index) => (
           <div
-            className={`flex items-center gap-5 cursor-pointer p-2 rounded-md text-sm ${
+            className={`flex items-center gap-5 cursor-pointer p-2 whitespace-nowrap rounded-md text-sm ${
               location.pathname === item.url
                 ? "bg-primary/5 text-primary font-medium"
                 : "text-[#828282]"

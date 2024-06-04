@@ -1,6 +1,5 @@
 import "@mantine/core/styles.css";
 import { MantineProvider } from "@mantine/core";
-import { theme } from "./theme";
 import { Notifications } from "@mantine/notifications";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import Authenticated from "./components/Authenticated";
@@ -16,7 +15,11 @@ export default function App() {
   }
 
   return (
-    <MantineProvider theme={theme}>
+    <MantineProvider theme={{
+      primaryColor: "blue",
+      fontFamily: "Montserrat, sans-serif",
+      defaultRadius: 8,
+    }}>
       <Notifications />
       <Routes>
         <Route
