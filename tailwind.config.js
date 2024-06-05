@@ -13,6 +13,9 @@ export default {
           gray: "#828282",
         },
       },
+      screens: {
+        xs: "400px"
+      }
     },
   },
   plugins: [],
