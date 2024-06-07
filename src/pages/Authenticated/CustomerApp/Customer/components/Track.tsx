@@ -13,6 +13,10 @@ const Tracking = ({ close, opened }: IProps) => {
         opened={opened}
         onClose={close}
         title={<Text fw={500}>Shipment Tracking</Text>}
+        overlayProps={{
+          backgroundOpacity: 0.55,
+          blur: 3,
+        }}
       >
         <div className="flex justify-between items-center text-sm">
           <div>Tracking Number</div>
@@ -75,7 +79,9 @@ const Tracking = ({ close, opened }: IProps) => {
                   <div> 03:52pm</div>
                 </div>
                 <div className="flex gap-5">
-                  <div className="border rounded-full py-1 px-2">In progress</div>
+                  <div className="border rounded-full py-1 px-2">
+                    In progress
+                  </div>
                   <div> 30/04/24</div>
                 </div>
               </div>

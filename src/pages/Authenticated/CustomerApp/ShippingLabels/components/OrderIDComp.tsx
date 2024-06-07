@@ -1,6 +1,8 @@
 import { Button } from '@mantine/core'
+import { useNavigate } from 'react-router-dom'
 
 const OrderIDComp = () => {
+  const navigate = useNavigate()
   return (
     <div>
       <h2 className="font-medium">Enter Order ID</h2>
@@ -18,7 +20,7 @@ const OrderIDComp = () => {
           size="lg"
           radius="md"
           className="bg-primary mt-10 font-light w-full"
-          onClick={() => {}}
+          onClick={() =>  navigate("/shipping-labels/purchase")}
         >
           Buy label
         </Button>

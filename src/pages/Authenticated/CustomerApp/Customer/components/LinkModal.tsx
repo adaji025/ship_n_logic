@@ -29,7 +29,15 @@ const LinkModal = ({ close, opened }: IProps) => {
 
   return (
     <>
-      <Modal centered opened={opened} onClose={close}>
+      <Modal
+        centered
+        opened={opened}
+        onClose={close}
+        overlayProps={{
+          backgroundOpacity: 0.55,
+          blur: 3,
+        }}
+      >
         {!start && (
           <>
             <div className="text-center font-medium text-xl">
