@@ -16,6 +16,7 @@ import { closeModal } from "../../redux/features/modalSlice";
 import ShippingLabels from "../../pages/Authenticated/CustomerApp/ShippingLabels";
 import Purchase from "../../pages/Authenticated/CustomerApp/ShippingLabels/Purchase";
 import OrderTracking from "../../pages/Authenticated/CustomerApp/OrderTracking";
+import Profile from "../../pages/Authenticated/CustomerApp/Profile";
 
 const Authenticated = () => {
   const [opened, { toggle }] = useDisclosure();
@@ -73,6 +74,7 @@ const Authenticated = () => {
             <Route path="/shipping-labels" element={<ShippingLabels />} />
             <Route path="/shipping-labels/purchase" element={<Purchase />} />
             <Route path="/orders-&-tracking" element={<OrderTracking />} />
+            <Route path="/profile" element={<Profile />} />
           </Routes>
         </div>
       </div>
