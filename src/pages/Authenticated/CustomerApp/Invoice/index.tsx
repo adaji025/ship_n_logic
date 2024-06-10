@@ -13,7 +13,7 @@ import { useDisclosure } from "@mantine/hooks";
 import Payment from "../ShippingLabels/components/Payement";
 
 const Invoice = () => {
-  const [opened, { open, close }] = useDisclosure(true);
+  const [opened, { open, close }] = useDisclosure();
   const [showModal, { close: closeModal, open: openModal }] = useDisclosure();
 
   const data = [

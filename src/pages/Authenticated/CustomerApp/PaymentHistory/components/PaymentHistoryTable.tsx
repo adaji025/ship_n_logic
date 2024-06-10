@@ -1,45 +1,40 @@
 import { Pagination, Select, Table } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { RiErrorWarningLine } from "react-icons/ri";
-import InvoiceDetails from "./InvoiceDetails";
-import Payment from "../../ShippingLabels/components/Payement";
+import BulkDetails from "./BulkDetails";
 
 interface IProps {
   data: {
-    invoice_no: string;
-    date_created: string;
+    receipt_no: string;
+    date_paid: string;
     company: string;
-    tracking_no: string;
     amount: string;
     status: string;
   }[];
 }
 
-const InvoiceTable = ({ data }: IProps) => {
+const PaymentHistoryTable = ({ data }: IProps) => {
   const [opened, { open, close }] = useDisclosure(false);
-  const [showModal, { close: closeModal, open: openModal }] =
-    useDisclosure(false);
+  
 
   return (
     <div>
-      <InvoiceDetails close={close} opened={opened} openModal={openModal} />
-      <Payment opened={showModal} close={closeModal} />
+      <BulkDetails close={close} opened={opened}  />
 
       <div className="overflow-x-auto text-sm mt-10">
         <Table>
           <Table.Thead>
             <Table.Tr className="text-dark-gray font-medium">
               <Table.Th className="whitespace-nowrap font-medium">
-                Invoice Number
+                Receipt Number
               </Table.Th>
               <Table.Th className="whitespace-nowrap font-medium">
-                Date created
+                Date Paid
               </Table.Th>
               <Table.Th className="font-medium">Company</Table.Th>
               <Table.Th className="font-medium whitespace-nowrap">
                 Shipping Service
               </Table.Th>
-              <Table.Th className="font-medium">Tracking number </Table.Th>
               <Table.Th className="font-medium ">Amount</Table.Th>
               <Table.Th className="whitespace-nowrap font-medium">
                 Status{" "}
@@ -50,18 +45,16 @@ const InvoiceTable = ({ data }: IProps) => {
             {data.map((element, index) => (
               <Table.Tr key={index}>
                 <Table.Td className="whitespace-nowrap">
-                  {element.invoice_no}
+                  {element.receipt_no}
                 </Table.Td>
                 <Table.Td className="whitespace-nowrap">
-                  {element.date_created}
+                  {element.date_paid}
                 </Table.Td>
 
                 <Table.Td className="whitespace-nowrap">
                   {element.company}
                 </Table.Td>
-                <Table.Td className="whitespace-nowrap">
-                  {element.tracking_no}
-                </Table.Td>
+
                 <Table.Td className="whitespace-nowrap">
                   {element.amount}
                 </Table.Td>
@@ -105,4 +98,4 @@ const InvoiceTable = ({ data }: IProps) => {
   );
 };
 
-export default InvoiceTable;
+export default PaymentHistoryTable;

@@ -18,6 +18,7 @@ import Purchase from "../../pages/Authenticated/CustomerApp/ShippingLabels/Purch
 import OrderTracking from "../../pages/Authenticated/CustomerApp/OrderTracking";
 import Profile from "../../pages/Authenticated/CustomerApp/Profile";
 import Invoice from "../../pages/Authenticated/CustomerApp/Invoice";
+import PaymentHistory from "../../pages/Authenticated/CustomerApp/PaymentHistory";
 
 const Authenticated = () => {
   const [opened, { toggle }] = useDisclosure();
@@ -77,6 +78,7 @@ const Authenticated = () => {
             <Route path="/orders-&-tracking" element={<OrderTracking />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/invoice" element={<Invoice />} />
+            <Route path="/payment-history" element={<PaymentHistory />} />
           </Routes>
         </div>
       </div>
