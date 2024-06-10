@@ -3,13 +3,60 @@ import Header from "./components/Header";
 import { IoChevronDownSharp } from "react-icons/io5";
 import { CiSearch } from "react-icons/ci";
 import { SlCalender } from "react-icons/sl";
+import { DeliveryIcon } from "../../../../components/Authenticated/Svg";
+import MoneyIcon from "../../../../assets/svg/invoice/money.svg";
+import PaidIcon from "../../../../assets/svg/invoice/paid.svg";
+import UpaidIcon from "../../../../assets/svg/invoice/unpaid.svg";
+import InvoiceTable from "./components/InvoiceTable";
+import BulkPayment from "./components/BulkDetails";
+import { useDisclosure } from "@mantine/hooks";
+import Payment from "../ShippingLabels/components/Payement";
 
 const Invoice = () => {
+  const [opened, { open, close }] = useDisclosure(true);
+  const [showModal, { close: closeModal, open: openModal }] = useDisclosure();
+
+  const data = [
+    {
+      invoice_no: "#12546735",
+      date_created: "11/05/2024",
+      company: "Ship N’ Logic",
+      tracking_no: "12GTD35",
+      amount: "$1,080",
+      status: "Unpaid",
+    },
+    {
+      invoice_no: "#12546735",
+      date_created: "11/05/2024",
+      company: "Ship N’ Logic",
+      tracking_no: "12GTD35",
+      amount: "$1,080",
+      status: "Unpaid",
+    },
+    {
+      invoice_no: "#12546735",
+      date_created: "11/05/2024",
+      company: "Ship N’ Logic",
+      tracking_no: "12GTD35",
+      amount: "$1,080",
+      status: "paid",
+    },
+    {
+      invoice_no: "#12546735",
+      date_created: "11/05/2024",
+      company: "Ship N’ Logic",
+      tracking_no: "12GTD35",
+      amount: "$1,080",
+      status: "paid",
+    },
+  ];
   return (
     <div>
-      <Header />
+      <BulkPayment close={close} opened={opened} openModal={openModal} />
+      <Payment opened={showModal} close={closeModal} />
+      <Header openbulkPaymentModal={open} />
       <div className="flex gap-5 justify-end mb-4">
-        <Button className="md:hidden px-10 bg-primary ">
+        <Button className="md:hidden px-10 bg-primary " onClick={open}>
           Make bulk Payment
         </Button>
         <button className="md:hidden border text-primary border-primary/40 py-2 px-5 rounded-xl text-sm font-medium">
@@ -61,6 +108,60 @@ const Invoice = () => {
           </div>
         </div>
       </div>
+
+      <div className="mt-10 grid sm:grid-cols-2 xl:grid-cols-4 lg:grid-cols-3 w-full gap-5">
+        <div className="p-5 w-full bg-white">
+          <div className="flex items-center gap-5">
+            <div className="flex justify-center items-center rounded-full bg-[#F0F5FBCC]/80 h-[56px] w-[56px] text-primary">
+              <DeliveryIcon />
+            </div>
+            <div>
+              <div className="text-xl font-medium">30</div>
+              <div className="text-sm text-[#828282] mt-2">Total shipment</div>
+            </div>
+          </div>
+        </div>
+
+        <div className="p-5 w-full bg-white">
+          <div className="flex items-center gap-5">
+            <div className="flex justify-center items-center rounded-full bg-[#F0F5FBCC]/80 h-[56px] w-[56px] text-primary">
+              <img src={MoneyIcon} alt="Total Expenditure" />
+            </div>
+            <div>
+              <div className="text-xl font-medium">$20,000</div>
+              <div className="text-sm text-[#828282] mt-2">
+                Total Expenditure
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="p-5 w-full bg-white">
+          <div className="flex items-center gap-5">
+            <div className="flex justify-center items-center rounded-full bg-[#F0F5FBCC]/80 h-[56px] w-[56px] text-primary">
+              <img src={PaidIcon} alt="Total Paid" />
+            </div>
+            <div>
+              <div className="text-xl font-medium">$20,000</div>
+              <div className="text-sm text-[#828282] mt-2">Total Paid </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="p-5 w-full bg-white">
+          <div className="flex items-center gap-5">
+            <div className="flex justify-center items-center rounded-full bg-[#F0F5FBCC]/80 h-[56px] w-[56px] text-primary">
+              <img src={UpaidIcon} alt="Total Unpaid" />
+            </div>
+            <div>
+              <div className="text-xl font-medium">$800</div>
+              <div className="text-sm text-[#828282] mt-2">Total Unpaid</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <InvoiceTable data={data} />
     </div>
   );
 };

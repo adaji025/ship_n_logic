@@ -5,7 +5,11 @@ import { CgMenuLeftAlt } from "react-icons/cg";
 import { useDispatch } from "react-redux";
 import { openModal } from "../../../../../redux/features/modalSlice";
 
-const Header = () => {
+interface IProps {
+  openbulkPaymentModal: () => void;
+}
+
+const Header = ({ openbulkPaymentModal }: IProps) => {
   const dispatch = useDispatch();
   const open = () => dispatch(openModal());
   return (
@@ -25,7 +29,10 @@ const Header = () => {
         </div>
       </div>
       <div className="flex items-center gap-5 md:gap-10">
-        <Button className="px-10 bg-primary hidden md:inline-block ">
+        <Button
+          className="px-10 bg-primary hidden md:inline-block "
+          onClick={openbulkPaymentModal}
+        >
           Make bulk Payment
         </Button>
         <button className="hidden md:inline-block border text-primary border-primary/40 py-2 px-5 rounded-xl text-sm font-medium">
