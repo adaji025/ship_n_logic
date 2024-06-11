@@ -4,9 +4,9 @@ import { CiLock, CiUnlock } from "react-icons/ci";
 import { Button, Checkbox } from "@mantine/core";
 import { BiLogoApple } from "react-icons/bi";
 import { FcGoogle } from "react-icons/fc";
-import Logo from "../../../assets/svg/logo.svg";
+import Logo from "../../../../assets/svg/logo.svg";
 
-const Login = () => {
+const AdminLogin = () => {
   const [seePw, setSeePw] = useState(false);
 
   const navigate = useNavigate();
@@ -18,15 +18,7 @@ const Login = () => {
         <div className="-mt-2 text-center font-medium text-lg">
           Welcome to Ship N' Logic
         </div>
-        <div className="text-center text-sm font-medium">
-          New to Ship N' Logic?{" "}
-          <span
-            className="text-primary cursor-pointer"
-            onClick={() => navigate("/sign-up")}
-          >
-            Sign up
-          </span>
-        </div>
+
         <div className="grid gap-3 w-full mt-10">
           <div className="grid gap-1">
             <label className="text-sm text-[#545454]" htmlFor="email">
@@ -63,10 +55,8 @@ const Login = () => {
             </div>
             <div className="flex items-center justify-between mt-2">
               <Checkbox label="Remember me" className="text-[#545454]" />
-              <div
-                className="text-sm text-[#545454] cursor-pointer"
-                onClick={() => navigate("/forgot-password")}
-              >
+              <div className="text-sm text-[#545454] cursor-pointer"
+              onClick={() => navigate("/forgot-password")}>
                 Forgot Password?
               </div>
             </div>
@@ -94,4 +84,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default AdminLogin;

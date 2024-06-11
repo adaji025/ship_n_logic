@@ -14,11 +14,12 @@ import Success from "../../pages/Unautheticated/Auth/Success";
 import ForgotPassword from "../../pages/Unautheticated/Auth/ForgotPassword";
 import VerifyOtp from "../../pages/Unautheticated/Auth/VerifyOtp";
 import ResetPassword from "../../pages/Unautheticated/Auth/ResetPassword";
+import AdminLogin from "../../pages/Unautheticated/Auth/Admin/AdminLogin";
 
 const Unauthenticated = () => {
   return (
     <Routes>
-      <Route path="/" element={<About />} />
+      {/* Customer App */}
       <Route path="/sign-in" element={<Login />} />
       <Route path="/sign-up" element={<Register />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
@@ -30,6 +31,12 @@ const Unauthenticated = () => {
       <Route path="/payment-option" element={<PaymentOption />} />
       <Route path="/business-info" element={<BusinessInfo />} />
       <Route path="/success" element={<Success />} />
+
+      {/* Admin app */}
+      <Route path="/admin/sign-in" element={<AdminLogin />} />
+
+      {/* Landing pages */}
+      <Route path="/" element={<About />} />
       <Route path="/privacy-policy" element={<Privacy />} />
       <Route path="/terms-of-use" element={<Terms />} />
       <Route path="/cookie-privacy" element={<Cookie />} />
