@@ -21,6 +21,7 @@ import Invoice from "../../pages/Authenticated/CustomerApp/Invoice";
 import PaymentHistory from "../../pages/Authenticated/CustomerApp/PaymentHistory";
 import { USER_TYPE } from "../../constant";
 import AdminDashboard from "../../pages/Authenticated/SuperAdminApp/Dashboard";
+import UserManagement from "../../pages/Authenticated/SuperAdminApp/UserManagemnet";
 
 const Authenticated = () => {
   const [opened, { toggle }] = useDisclosure();
@@ -71,7 +72,6 @@ const Authenticated = () => {
         </div>
 
         <div className="w-full min-h-screen px-5 lg:px-10 pb-10 overflow-hidden">
-          {/* <Header open={open} title="Dashboard" /> */}
           <Routes>
             <Route
               path="/"
@@ -79,6 +79,8 @@ const Authenticated = () => {
                 USER_TYPE === "customer" ? <Dashboard /> : <AdminDashboard />
               }
             />
+
+            {/* Customer App */}
             <Route path="/customer-data" element={<CustomerData />} />
             <Route path="/shipping-labels" element={<ShippingLabels />} />
             <Route path="/shipping-labels/purchase" element={<Purchase />} />
@@ -86,6 +88,9 @@ const Authenticated = () => {
             <Route path="/profile" element={<Profile />} />
             <Route path="/invoice" element={<Invoice />} />
             <Route path="/payment-history" element={<PaymentHistory />} />
+
+            {/* Super Admin App */}
+            <Route path="/user-management" element={<UserManagement />} />
           </Routes>
         </div>
       </div>
