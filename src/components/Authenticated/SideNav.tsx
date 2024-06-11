@@ -1,13 +1,20 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import {
+  AdminUserIcon,
   DashboardIcon,
   DeliveryIcon,
+  DocIcon,
   InvoiceIcon,
+  MarkUpIcon,
   OrderIcon,
   PaymentIcon,
+  SoftwareIcon,
+  SupportIcon,
   UserIcon,
 } from "./Svg";
 import { CiLogout } from "react-icons/ci";
+import { useEffect, useState } from "react";
+import { USER_TYPE } from "../../constant";
 
 interface IProps {
   opened: boolean;
@@ -15,9 +22,21 @@ interface IProps {
 }
 
 const SideNav = ({ opened, close }: IProps) => {
+  const [route, setRoute] = useState<any[]>([]);
   const location = useLocation();
   const navigate = useNavigate();
-  const data = [
+
+  useEffect(() => {
+    if (USER_TYPE === "customer") {
+      setRoute(customerRoute);
+    } else if (USER_TYPE === "super_admin") {
+      setRoute(superAdminRoute);
+    } else {
+      setRoute(adminRoute);
+    }
+  }, []);
+
+  const customerRoute = [
     {
       name: "Dashboard",
       icon: <DashboardIcon />,
@@ -49,10 +68,85 @@ const SideNav = ({ opened, close }: IProps) => {
       url: "/payment-history",
     },
   ];
+
+  const superAdminRoute = [
+    {
+      name: "Dashboard",
+      icon: <DashboardIcon />,
+      url: "/",
+    },
+    {
+      name: "User Management",
+      icon: <UserIcon />,
+      url: "/user-management",
+    },
+    {
+      name: "Admin Management",
+      icon: <AdminUserIcon />,
+      url: "/admin-management",
+    },
+    {
+      name: "Mark Up ",
+      icon: <MarkUpIcon />,
+      url: "/mark-up",
+    },
+    {
+      name: "Shipping Labels",
+      icon: <DeliveryIcon />,
+      url: "/shipping-labels",
+    },
+
+    {
+      name: "Invoice",
+      icon: <InvoiceIcon />,
+      url: "/invoice",
+    },
+    {
+      name: "Software",
+      icon: <SoftwareIcon />,
+      url: "/software",
+    },
+    {
+      name: "Legal Documents",
+      icon: <DocIcon />,
+      url: "/legal-ducuments",
+    },
+    {
+      name: "Support",
+      icon: <SupportIcon />,
+      url: "/support",
+    },
+  ];
+
+  const adminRoute = [
+    {
+      name: "User Management",
+      icon: <UserIcon />,
+      url: "/user-management",
+    },
+
+    {
+      name: "Shipping Labels",
+      icon: <DeliveryIcon />,
+      url: "/shipping-labels",
+    },
+
+    {
+      name: "Invoice",
+      icon: <InvoiceIcon />,
+      url: "/invoice",
+    },
+    {
+      name: "Support",
+      icon: <SupportIcon />,
+      url: "/support",
+    },
+  ];
+
   return (
     <div className="flex-1 flex flex-col justify-between max-h-screen h-full gap-5">
       <div className="grid gap-5">
-        {data.map((item, index) => (
+        {route.map((item, index) => (
           <div
             className={`flex items-center gap-5 cursor-pointer p-2 whitespace-nowrap rounded-md text-sm ${
               location.pathname === item.url
