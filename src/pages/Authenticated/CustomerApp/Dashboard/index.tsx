@@ -14,7 +14,7 @@ const Dashboard = () => {
   return (
     <div>
       <Header />
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-10">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-5">
         <div className=" w-full bg-white p-5">
           <div className="flex justify-end ">
             <div className="flex gap-2 p-2 rounded-md font-semibold text-xs text-primary-green bg-[#1571450D]/5">

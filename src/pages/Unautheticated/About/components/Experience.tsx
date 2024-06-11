@@ -8,7 +8,7 @@ const Experience = () => {
           <div className="mt-3">Explore our features.</div>
         </div>
 
-        <div className="max-w-[900px] mx-auto rounded-3xl mt-10">
+        <div className="max-w-[900px] w-full mx-auto rounded-3xl mt-10">
           <iframe
             width="100%"
             height="430"

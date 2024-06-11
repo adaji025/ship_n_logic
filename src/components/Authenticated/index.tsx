@@ -19,6 +19,8 @@ import OrderTracking from "../../pages/Authenticated/CustomerApp/OrderTracking";
 import Profile from "../../pages/Authenticated/CustomerApp/Profile";
 import Invoice from "../../pages/Authenticated/CustomerApp/Invoice";
 import PaymentHistory from "../../pages/Authenticated/CustomerApp/PaymentHistory";
+import { USER_TYPE } from "../../constant";
+import AdminDashboard from "../../pages/Authenticated/SuperAdminApp/Dashboard";
 
 const Authenticated = () => {
   const [opened, { toggle }] = useDisclosure();
@@ -71,7 +73,12 @@ const Authenticated = () => {
         <div className="w-full min-h-screen px-5 lg:px-10 pb-10 overflow-hidden">
           {/* <Header open={open} title="Dashboard" /> */}
           <Routes>
-            <Route path="/" element={<Dashboard />} />
+            <Route
+              path="/"
+              element={
+                USER_TYPE === "customer" ? <Dashboard /> : <AdminDashboard />
+              }
+            />
             <Route path="/customer-data" element={<CustomerData />} />
             <Route path="/shipping-labels" element={<ShippingLabels />} />
             <Route path="/shipping-labels/purchase" element={<Purchase />} />
