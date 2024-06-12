@@ -42,6 +42,7 @@ const UserManagement = () => {
   return (
     <div>
       <Header />
+
       <div className="flex flex-col md:flex-row gap-5 justify-between mt-5 md:mt-[unset]">
         <div className="flex items-center gap-5">
           <h4 className="font-medium">Users</h4>

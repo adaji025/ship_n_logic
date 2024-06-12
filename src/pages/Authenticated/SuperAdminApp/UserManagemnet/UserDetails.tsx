@@ -11,13 +11,28 @@ import {
   DiscountIcon,
   DollarIcon,
 } from "../../../../components/Authenticated/Svg";
+import { useDisclosure } from "@mantine/hooks";
+import VerificationStatus from "./components/VerificationStatus";
+import SpendingLimit from "./components/SpendingLimit";
+import ApplyDiscount from "./components/ApplyDiscount";
 
 const UserDetails = () => {
+  const [opened, { close, open }] = useDisclosure();
+  const [
+    discountModal,
+    { close: closeDiscountModal, open: openDiscountModal },
+  ] = useDisclosure();
+
+  const [limitModal, { close: closeLimitModal, open: openLimitModal }] =
+    useDisclosure();
   const navigate = useNavigate();
 
   return (
     <div>
       <Header />
+      <VerificationStatus close={close} opened={opened} />
+      <SpendingLimit close={closeLimitModal} opened={limitModal} />
+      <ApplyDiscount close={closeDiscountModal} opened={discountModal} />
       <div className="mt-10">
         <div className="flex justify-between gap-5">
           <div className="font-medium">Business Information</div>
@@ -32,21 +47,24 @@ const UserDetails = () => {
               <Divider />
               <Menu.Item
                 leftSection={<FiEdit3 size={20} color="#2A76C3" />}
-                onClick={() => navigate("/user-information")}
+                onClick={() => navigate("/business-information")}
               >
                 Edit Business Information
               </Menu.Item>
               <Menu.Item
                 leftSection={<FiEdit3 size={20} color="#2A76C3" />}
-                onClick={() => navigate("/shipping-labels")}
+                onClick={open}
               >
-                Email: annamiller@gmail.com
+                Update Verification Status
               </Menu.Item>
-              <Menu.Item color="#A25004" leftSection={<DollarIcon />}>
-                Disable Account
+              <Menu.Item leftSection={<DollarIcon />} onClick={openLimitModal}>
+                Set Up Spending Limit
               </Menu.Item>
-              <Menu.Item color="#A25004" leftSection={<DiscountIcon />}>
-                Permanently Delete User
+              <Menu.Item
+                leftSection={<DiscountIcon />}
+                onClick={openDiscountModal}
+              >
+                Apply Discount
               </Menu.Item>
             </Menu.Dropdown>
           </Menu>

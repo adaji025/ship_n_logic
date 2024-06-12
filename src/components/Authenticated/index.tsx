@@ -23,6 +23,7 @@ import { USER_TYPE } from "../../constant";
 import AdminDashboard from "../../pages/Authenticated/SuperAdminApp/Dashboard";
 import UserManagement from "../../pages/Authenticated/SuperAdminApp/UserManagemnet";
 import UserDetails from "../../pages/Authenticated/SuperAdminApp/UserManagemnet/UserDetails";
+import BusinessInfo from "../../pages/Authenticated/SuperAdminApp/UserManagemnet/BusinessInfo";
 
 const Authenticated = () => {
   const [opened, { toggle }] = useDisclosure();
@@ -93,6 +94,7 @@ const Authenticated = () => {
             {/* Super Admin App */}
             <Route path="/user-management" element={<UserManagement />} />
             <Route path="/user-information" element={<UserDetails />} />
+            <Route path="/business-information" element={<BusinessInfo />} />
           </Routes>
         </div>
       </div>

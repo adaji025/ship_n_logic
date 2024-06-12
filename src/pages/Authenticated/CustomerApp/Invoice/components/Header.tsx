@@ -1,9 +1,11 @@
-import { Avatar, Button } from "@mantine/core";
+import { Avatar, Button, Menu } from "@mantine/core";
 import NotificationIcon from "../../../../../assets/svg/notification.svg";
 import { IoChevronForward } from "react-icons/io5";
 import { CgMenuLeftAlt } from "react-icons/cg";
 import { useDispatch } from "react-redux";
 import { openModal } from "../../../../../redux/features/modalSlice";
+import { FaRegUser } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 interface IProps {
   openbulkPaymentModal: () => void;
@@ -12,6 +14,8 @@ interface IProps {
 const Header = ({ openbulkPaymentModal }: IProps) => {
   const dispatch = useDispatch();
   const open = () => dispatch(openModal());
+  const navigate = useNavigate()
+  
   return (
     <div className="flex w-full justify-between items-center gap-5 h-[100px] ">
       <div className="flex flex-1 gap-2 items-center">
@@ -48,7 +52,21 @@ const Header = ({ openbulkPaymentModal }: IProps) => {
         <div>?</div>
         <div className="flex items-center gap-5">
           <Avatar size="md" />
-          <IoChevronForward />
+          <Menu shadow="xs">
+              <Menu.Target>
+                <button>
+                  <IoChevronForward />
+                </button>
+              </Menu.Target>
+              <Menu.Dropdown className="mt-2">
+                <Menu.Item
+                  leftSection={<FaRegUser color="#333333" />}
+                  onClick={() => navigate("/profile")}
+                >
+                  View profile
+                </Menu.Item>
+              </Menu.Dropdown>
+            </Menu>
         </div>
       </div>
     </div>

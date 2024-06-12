@@ -4,6 +4,10 @@ import { SlOptionsVertical } from "react-icons/sl";
 import { IoDocumentTextOutline } from "react-icons/io5";
 import { BiUserX } from "react-icons/bi";
 import { DiscountIcon } from "../../../../../components/Authenticated/Svg";
+import DeleteAccount from "../../../../../components/Authenticated/Confirmation";
+import DisableAccount from "../../../../../components/Authenticated/Confirmation";
+import { useDisclosure } from "@mantine/hooks";
+import ApplyDiscount from "./ApplyDiscount";
 
 interface IProps {
   data: {
@@ -17,10 +21,33 @@ interface IProps {
 }
 
 const UserTable = ({ data }: IProps) => {
+  const [
+    disableAcount,
+    { open: openDisableAccount, close: closeDisableAccount },
+  ] = useDisclosure();
+  const [opened, { close, open }] = useDisclosure();
+  const [
+    discountModal,
+    { close: closeDiscountModal, open: openDiscountModal },
+  ] = useDisclosure();
+
   const navigate = useNavigate();
 
   return (
     <div className="mt-10">
+      <DeleteAccount
+        btnText="permanently delete"
+        close={close}
+        opened={opened}
+        handleClick={() => {}}
+      />
+      <DisableAccount
+        btnText="disable"
+        close={closeDisableAccount}
+        opened={disableAcount}
+        handleClick={() => {}}
+      />
+      <ApplyDiscount close={closeDiscountModal} opened={discountModal} />
       <div className="overflow-x-auto text-sm">
         <Table>
           <Table.Thead>
@@ -78,7 +105,7 @@ const UserTable = ({ data }: IProps) => {
                 <Table.Td>
                   <Menu shadow="xs">
                     <Menu.Target>
-                      <button className="">
+                      <button>
                         <SlOptionsVertical />
                       </button>
                     </Menu.Target>
@@ -95,19 +122,21 @@ const UserTable = ({ data }: IProps) => {
                       </Menu.Item>
                       <Menu.Item
                         leftSection={<DiscountIcon />}
-                        // onClick={() => navigate("/shipping-labels")}
+                        onClick={openDiscountModal}
                       >
                         Apply Discount
                       </Menu.Item>
                       <Menu.Item
                         color="#A25004"
                         leftSection={<BiUserX size={20} color="#A25004" />}
+                        onClick={openDisableAccount}
                       >
                         Disable Account
                       </Menu.Item>
                       <Menu.Item
                         color="#A25004"
                         leftSection={<BiUserX size={20} color="#A25004" />}
+                        onClick={open}
                       >
                         Permanently Delete User
                       </Menu.Item>
@@ -119,7 +148,6 @@ const UserTable = ({ data }: IProps) => {
           </Table.Tbody>
         </Table>
       </div>
-
       <div className="flex gap-5 justify-center mt-10">
         <Pagination total={10} />
         <div className="flex gap-2 items-center">

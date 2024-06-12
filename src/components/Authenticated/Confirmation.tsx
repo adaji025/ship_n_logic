@@ -1,4 +1,4 @@
-import { Button, Modal, Text } from "@mantine/core";
+import { Button, Modal } from "@mantine/core";
 
 export type IProps = {
   opened: boolean;
@@ -18,23 +18,27 @@ const Confirmation = ({ close, handleClick, opened, btnText }: IProps) => {
       centered
       opened={opened}
       onClose={close}
-      title={
-        <Text className="text-black font-semibold text-xl">{btnText}</Text>
-      }
     >
-      <div className="text-lg font-medium">
+      <div className="text-lg font-medium mt-10 text-center">
         Are you sure you want to{" "}
-        <span className="font-semibold">{btnText}</span> ?
+        <span className="font-semibold">{btnText} </span> this account?
       </div>
-      <div className="flex justify-end mt-10">
-        <Button className="text-primary font-bold" onClick={close}>
-          Cancel
+
+      <div className="flex flex-col mx-auto gap-5  my-10 justify-center w-full">
+        <Button
+          size="md"
+          className="bg-primary max-w-[315px] mx-auto w-full"
+          onClick={close}
+        >
+          No, cancel action
         </Button>
         <Button
-          className="bg-primary font-bold"
+          size="md"
+          variant="outline"
+          className="max-w-[315px] w-full mx-auto"
           onClick={handleClick}
         >
-          {btnText}
+          Yes, <span className="capitalize">{btnText}</span> Account
         </Button>
       </div>
     </Modal>
