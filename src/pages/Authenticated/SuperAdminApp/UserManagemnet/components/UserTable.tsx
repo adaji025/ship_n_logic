@@ -89,14 +89,15 @@ const UserTable = ({ data }: IProps) => {
                         leftSection={
                           <IoDocumentTextOutline size={20} color="#2A76C3" />
                         }
+                        onClick={() => navigate("/user-information")}
                       >
                         View Business Information
                       </Menu.Item>
                       <Menu.Item
                         leftSection={<DiscountIcon />}
-                        onClick={() => navigate("/shipping-labels")}
+                        // onClick={() => navigate("/shipping-labels")}
                       >
-                        Email: annamiller@gmail.com
+                        Apply Discount
                       </Menu.Item>
                       <Menu.Item
                         color="#A25004"

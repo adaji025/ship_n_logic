@@ -13,8 +13,10 @@ import {
   UserIcon,
 } from "./Svg";
 import { CiLogout } from "react-icons/ci";
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { USER_TYPE } from "../../constant";
+import { useDisclosure } from "@mantine/hooks";
+import ConfirmLogout from "./ConfirmLogout";
 
 interface IProps {
   opened: boolean;
@@ -23,6 +25,7 @@ interface IProps {
 
 const SideNav = ({ opened, close }: IProps) => {
   const [route, setRoute] = useState<any[]>([]);
+  const [showLogoutModal, { open, close: closeLogoutModal }] = useDisclosure();
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -144,31 +147,37 @@ const SideNav = ({ opened, close }: IProps) => {
   ];
 
   return (
-    <div className="flex-1 flex flex-col justify-between max-h-screen h-full gap-5">
-      <div className="grid gap-5">
-        {route.map((item, index) => (
-          <div
-            className={`flex items-center gap-5 cursor-pointer p-2 whitespace-nowrap rounded-md text-sm ${
-              location.pathname === item.url
-                ? "bg-primary/5 text-primary font-medium"
-                : "text-[#828282]"
-            } ${opened ? "w-max" : ""}`}
-            onClick={() => {
-              navigate(item.url);
-              close();
-            }}
-            key={index}
-          >
-            {item.icon}
-            {opened ? null : item.name}
-          </div>
-        ))}
+    <Fragment>
+      <ConfirmLogout close={closeLogoutModal} opened={showLogoutModal} />
+      <div className="flex-1 flex flex-col justify-between max-h-screen h-full gap-5">
+        <div className="grid gap-5">
+          {route.map((item, index) => (
+            <div
+              className={`flex items-center gap-5 cursor-pointer p-2 whitespace-nowrap rounded-md text-sm ${
+                location.pathname === item.url
+                  ? "bg-primary/5 text-primary font-medium"
+                  : "text-[#828282]"
+              } ${opened ? "w-max" : ""}`}
+              onClick={() => {
+                navigate(item.url);
+                close();
+              }}
+              key={index}
+            >
+              {item.icon}
+              {opened ? null : item.name}
+            </div>
+          ))}
+        </div>
+        <div
+          className="flex items-center text-sm p-2 cursor-pointer gap-5"
+          onClick={open}
+        >
+          <CiLogout size={20} />
+          {!opened && <div>Log Out</div>}
+        </div>
       </div>
-      <div className="flex items-center text-sm p-2 cursor-pointer gap-5">
-        <CiLogout size={20} />
-        {!opened && <div>Log Out</div>}
-      </div>
-    </div>
+    </Fragment>
   );
 };
 
