@@ -24,6 +24,8 @@ import AdminDashboard from "../../pages/Authenticated/SuperAdminApp/Dashboard";
 import UserManagement from "../../pages/Authenticated/SuperAdminApp/UserManagemnet";
 import UserDetails from "../../pages/Authenticated/SuperAdminApp/UserManagemnet/UserDetails";
 import BusinessInfo from "../../pages/Authenticated/SuperAdminApp/UserManagemnet/BusinessInfo";
+import AdminManagement from "../../pages/Authenticated/SuperAdminApp/AdminManagement";
+import AdminDetails from "../../pages/Authenticated/SuperAdminApp/AdminManagement/AdminDetails";
 
 const Authenticated = () => {
   const [opened, { toggle }] = useDisclosure();
@@ -92,6 +94,8 @@ const Authenticated = () => {
             <Route path="/payment-history" element={<PaymentHistory />} />
 
             {/* Super Admin App */}
+            <Route path="/admin-management" element={<AdminManagement />} />
+            <Route path="/admin-details" element={<AdminDetails />} />
             <Route path="/user-management" element={<UserManagement />} />
             <Route path="/user-information" element={<UserDetails />} />
             <Route path="/business-information" element={<BusinessInfo />} />
