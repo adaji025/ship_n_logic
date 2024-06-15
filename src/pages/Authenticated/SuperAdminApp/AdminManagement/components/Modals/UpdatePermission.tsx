@@ -1,4 +1,6 @@
 import { Button, Modal, Select } from "@mantine/core";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 interface IProps {
   opened: boolean;
@@ -6,6 +8,9 @@ interface IProps {
 }
 
 const UpdatePermission = ({ close, opened }: IProps) => {
+  const [success, setSuccess] = useState(false);
+  const navigate = useNavigate();
+
   return (
     <Modal
       overlayProps={{
@@ -17,27 +22,62 @@ const UpdatePermission = ({ close, opened }: IProps) => {
       opened={opened}
       title={
         <div>
-          <h2 className="text-xl font-medium">Employment Type</h2>
+          <h2 className="text-xl font-medium">
+            {success ? "" : "Employment Type"}
+          </h2>
           <div className="text-sm mt-1 font-medium text-[#333333]">
-            Update Admin Employment Type
+            {success ? "" : "Update Admin Employment Type"}
           </div>
         </div>
       }
     >
-      <Select
-        size="md"
-        mt={4}
-        label="Contract Type"
-        placeholder="Select Contract Type"
-        data={[
-          { label: "Admin", value: "Admin" },
-          { label: "Super Admin", value: "Super Admin" },
-        ]}
-      />
+      {!success && (
+        <>
+          <Select
+            size="md"
+            mt={4}
+            label="Contract Type"
+            placeholder="Select Contract Type"
+            data={[
+              { label: "Admin", value: "Admin" },
+              { label: "Super Admin", value: "Super Admin" },
+            ]}
+          />
 
-      <Button mt={32} mb={24} size="md" className="w-full mx-auto bg-primary">
-        Update
-      </Button>
+          <Button
+            mt={32}
+            mb={24}
+            size="md"
+            className="w-full mx-auto bg-primary"
+            onClick={() => setSuccess(true)}
+          >
+            Update
+          </Button>
+        </>
+      )}
+
+      {success && (
+        <>
+          <div className="mt-10 text-center font-medium">
+            Admin permission has been updated successfully!
+          </div>
+          <div className="mt-3 text-center max-w-[278px] mx-auto">
+            This admin now has Super Admin rights.
+          </div>
+
+          <div className="flex justify-center">
+            <Button
+              mt={32}
+              mb={40}
+              size="md"
+              className="w-full mx-auto max-w-[278px] bg-primary"
+              onClick={() => navigate("/admin-details")}
+            >
+              Back To Home
+            </Button>
+          </div>
+        </>
+      )}
     </Modal>
   );
 };
