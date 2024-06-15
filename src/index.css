@@ -22,8 +22,10 @@ thead {
   height: 100%;
 }
 label {
-  font-weight: 600 !important;
   margin-bottom: 6px;
+  font-weight: 400 !important;
+  font-size: 14px !important;
+  color: #8A8A8A !important;
 }
 
 button.mantine-active.mantine-Pagination-control {
