@@ -1,7 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import { Divider, Menu, Pagination, Select, Table } from "@mantine/core";
-import { FaRegUser } from "react-icons/fa";
 import SolarDocIcon from "../../../../../assets/svg/solar_document-broken.svg";
+import DownloadLabels from "../../../CustomerApp/ShippingLabels/components/DownloadLabels";
+import { useDisclosure } from "@mantine/hooks";
+import Tracking from "../../../CustomerApp/Customer/components/Track";
 
 interface IProps {
   data: {
@@ -16,10 +18,15 @@ interface IProps {
 }
 
 const LabelTable = ({ data }: IProps) => {
+  const [opened, { open, close }] = useDisclosure();
+  const [showTracking, { open: openShowTracking, close: closeShowTracking }] =
+    useDisclosure();
   const navigate = useNavigate();
 
   return (
     <div className="mt-10">
+      <DownloadLabels opened={opened} close={close} />
+      <Tracking close={closeShowTracking} opened={showTracking} />
       <div className="overflow-x-auto text-sm">
         <Table>
           <Table.Thead>
@@ -79,15 +86,9 @@ const LabelTable = ({ data }: IProps) => {
                     <Menu.Dropdown>
                       <Menu.Label>Menu</Menu.Label>
                       <Divider />
-                      <Menu.Item
-                        onClick={() => navigate("/admin-details")}
-                      >
-                        Download Admin
-                      </Menu.Item>
-                      <Menu.Item
-                        onClick={() => navigate("/admin-details")}
-                      >
-                        View Admin
+                      <Menu.Item onClick={open}>Download Label</Menu.Item>
+                      <Menu.Item onClick={openShowTracking}>
+                        Track Order
                       </Menu.Item>
                     </Menu.Dropdown>
                   </Menu>
@@ -97,7 +98,7 @@ const LabelTable = ({ data }: IProps) => {
           </Table.Tbody>
         </Table>
       </div>
-      <div className="flex gap-5 justify-center mt-10">
+      <div className="flex flex-col sm:flex-row gap-5 items-center sm:justify-center mt-10 overflow-auto">
         <Pagination total={10} />
         <div className="flex gap-2 items-center">
           <div>PerPage</div>
