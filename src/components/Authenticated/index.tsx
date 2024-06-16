@@ -27,6 +27,7 @@ import BusinessInfo from "../../pages/Authenticated/SuperAdminApp/UserManagemnet
 import AdminManagement from "../../pages/Authenticated/SuperAdminApp/AdminManagement";
 import AdminDetails from "../../pages/Authenticated/SuperAdminApp/AdminManagement/AdminDetails";
 import MarkUp from "../../pages/Authenticated/SuperAdminApp/MarkUp";
+import AdminShippingLabel from "../../pages/Authenticated/SuperAdminApp/AdminShippingLabel";
 
 const Authenticated = () => {
   const [opened, { toggle }] = useDisclosure();
@@ -85,9 +86,18 @@ const Authenticated = () => {
               }
             />
 
+            <Route
+              path="/shipping-labels"
+              element={
+                USER_TYPE === "customer" ? (
+                  <ShippingLabels />
+                ) : (
+                  <AdminShippingLabel />
+                )
+              }
+            />
             {/* Customer App */}
             <Route path="/customer-data" element={<CustomerData />} />
-            <Route path="/shipping-labels" element={<ShippingLabels />} />
             <Route path="/shipping-labels/purchase" element={<Purchase />} />
             <Route path="/orders-&-tracking" element={<OrderTracking />} />
             <Route path="/profile" element={<Profile />} />
