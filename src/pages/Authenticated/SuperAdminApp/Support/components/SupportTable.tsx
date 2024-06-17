@@ -1,46 +1,48 @@
-import { Divider, Menu, Pagination, Select, Table } from "@mantine/core";
-import SolarDocIcon from "../../../../../assets/svg/solar_document-broken.svg";
-import DownloadLabels from "../../../CustomerApp/ShippingLabels/components/DownloadLabels";
+import { Pagination, Select, Table } from "@mantine/core";
+import { RiErrorWarningLine } from "react-icons/ri";
 import { useDisclosure } from "@mantine/hooks";
-import Tracking from "../../../CustomerApp/Customer/components/Track";
+import SupportDetails from "./SupportDetails";
+import Reply from "./Reply";
 
 interface IProps {
   data: {
-    tracking_no: string;
-    date_purchased: string;
-    shipping_service: string;
-    sold_to: string;
+    support_id: string;
+    date_submitted: string;
+    user: string;
     email: string;
-    shipped_to: string;
+    category: string;
     status: string;
   }[];
 }
 
-const LabelTable = ({ data }: IProps) => {
+const SupportTable = ({ data }: IProps) => {
   const [opened, { open, close }] = useDisclosure();
-  const [showTracking, { open: openShowTracking, close: closeShowTracking }] =
+  const [showReply, { open: openShowReply, close: closeShowReply }] =
     useDisclosure();
 
   return (
     <div className="mt-10">
-      <DownloadLabels opened={opened} close={close} />
-      <Tracking close={closeShowTracking} opened={showTracking} />
+      <SupportDetails
+        opened={opened}
+        close={close}
+        openShowReply={openShowReply}
+      />
+      <Reply close={closeShowReply} opened={showReply} />
       <div className="overflow-x-auto text-sm">
         <Table>
           <Table.Thead>
             <Table.Tr className="text-dark-gray font-medium">
               <Table.Th className="whitespace-nowrap font-medium">
-                Tracking Number
+                Support ID
               </Table.Th>
               <Table.Th className="whitespace-nowrap font-medium">
-                Date purchased
+                Date submitted
               </Table.Th>
               <Table.Th className="font-medium whitespace-nowrap">
-                Shipping Service
+                User
               </Table.Th>
-              <Table.Th className="font-medium">Sold To</Table.Th>
-              <Table.Th className="font-medium">User Email</Table.Th>
-              <Table.Th className="font-medium">Shipped To</Table.Th>
+              <Table.Th className="font-medium">Email</Table.Th>
+              <Table.Th className="font-medium">Category</Table.Th>
               <Table.Th className="font-medium">Status </Table.Th>
             </Table.Tr>
           </Table.Thead>
@@ -48,26 +50,25 @@ const LabelTable = ({ data }: IProps) => {
             {data.map((element, index) => (
               <Table.Tr key={index}>
                 <Table.Td className="whitespace-nowrap">
-                  {element.tracking_no}
+                  {element.support_id}
                 </Table.Td>
                 <Table.Td className="whitespace-nowrap">
-                  {element.date_purchased}
+                  {element.date_submitted}
                 </Table.Td>
-
                 <Table.Td className="whitespace-nowrap">
-                  {element.shipping_service}
+                  {element.user}
                 </Table.Td>
                 <Table.Td className="whitespace-nowrap">
                   {element.email}
                 </Table.Td>
                 <Table.Td className="whitespace-nowrap">
-                  {element.shipped_to}
+                  {element.category}
                 </Table.Td>
                 <Table.Td className="whitespace-nowrap">
                   <button
                     className={`px-2 py-1 rounded-2xl capitalize min-w-[94px] bg-primary-green/5 font-medium ${
-                      element.status === "In Transit"
-                        ? "text-[#2A76C3]"
+                      element.status === "Resolved"
+                        ? "text-[#0A9310]"
                         : "text-[#F79E1B]"
                     }`}
                   >
@@ -75,21 +76,7 @@ const LabelTable = ({ data }: IProps) => {
                   </button>
                 </Table.Td>
                 <Table.Td>
-                  <Menu shadow="xs">
-                    <Menu.Target>
-                      <button>
-                        <img src={SolarDocIcon} />
-                      </button>
-                    </Menu.Target>
-                    <Menu.Dropdown>
-                      <Menu.Label>Menu</Menu.Label>
-                      <Divider />
-                      <Menu.Item onClick={open}>Download Label</Menu.Item>
-                      <Menu.Item onClick={openShowTracking}>
-                        Track Order
-                      </Menu.Item>
-                    </Menu.Dropdown>
-                  </Menu>
+                  <RiErrorWarningLine size={20} onClick={open} className="cursor-pointer" />
                 </Table.Td>
               </Table.Tr>
             ))}
@@ -116,4 +103,4 @@ const LabelTable = ({ data }: IProps) => {
   );
 };
 
-export default LabelTable;
+export default SupportTable;

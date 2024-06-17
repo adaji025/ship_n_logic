@@ -28,6 +28,7 @@ import AdminManagement from "../../pages/Authenticated/SuperAdminApp/AdminManage
 import AdminDetails from "../../pages/Authenticated/SuperAdminApp/AdminManagement/AdminDetails";
 import MarkUp from "../../pages/Authenticated/SuperAdminApp/MarkUp";
 import AdminShippingLabel from "../../pages/Authenticated/SuperAdminApp/AdminShippingLabel";
+import Support from "../../pages/Authenticated/SuperAdminApp/Support";
 
 const Authenticated = () => {
   const [opened, { toggle }] = useDisclosure();
@@ -111,6 +112,7 @@ const Authenticated = () => {
             <Route path="/user-information" element={<UserDetails />} />
             <Route path="/business-information" element={<BusinessInfo />} />
             <Route path="/mark-up" element={<MarkUp />} />
+            <Route path="/support" element={<Support />} />
           </Routes>
         </div>
       </div>
