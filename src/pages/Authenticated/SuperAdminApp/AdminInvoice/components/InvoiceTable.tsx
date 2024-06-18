@@ -1,16 +1,20 @@
-import { Pagination, Select, Table } from "@mantine/core";
+import { Menu, Pagination, Select, Table } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import { RiErrorWarningLine } from "react-icons/ri";
 import InvoiceDetails from "./InvoiceDetails";
-import Payment from "../../ShippingLabels/components/Payement";
+import Payment from "../../../CustomerApp/ShippingLabels/components/Payement";
+import { SlOptionsVertical } from "react-icons/sl";
+import { FaRegFileAlt } from "react-icons/fa";
+import { RiErrorWarningLine } from "react-icons/ri";
+import { useNavigate } from "react-router-dom";
 
 interface IProps {
   data: {
-    invoice_no: string;
-    date_created: string;
-    company: string;
-    tracking_no: string;
-    amount: string;
+    name: string;
+    email: string;
+    company_name: string;
+    label_purchased: string;
+    paid: string;
+    outstanding: string;
     status: string;
   }[];
 }
@@ -19,6 +23,7 @@ const InvoiceTable = ({ data }: IProps) => {
   const [opened, { open, close }] = useDisclosure(false);
   const [showModal, { close: closeModal, open: openModal }] =
     useDisclosure(false);
+    const navigate = useNavigate()
 
   return (
     <div>
@@ -30,14 +35,15 @@ const InvoiceTable = ({ data }: IProps) => {
           <Table.Thead>
             <Table.Tr className="text-dark-gray font-medium">
               <Table.Th className="whitespace-nowrap font-medium">
-                Invoice Number
+                Name
               </Table.Th>
               <Table.Th className="whitespace-nowrap font-medium">
-                Date created
+                Email
               </Table.Th>
-              <Table.Th className="font-medium">Company</Table.Th>
-              <Table.Th className="font-medium">Tracking number </Table.Th>
-              <Table.Th className="font-medium ">Amount</Table.Th>
+              <Table.Th className="font-medium">Company Name</Table.Th>
+              <Table.Th className="font-medium">Label Purchased</Table.Th>
+              <Table.Th className="font-medium ">Paid</Table.Th>
+              <Table.Th className="font-medium ">Outstanding</Table.Th>
               <Table.Th className="whitespace-nowrap font-medium">
                 Status{" "}
               </Table.Th>
@@ -47,20 +53,23 @@ const InvoiceTable = ({ data }: IProps) => {
             {data.map((element, index) => (
               <Table.Tr key={index}>
                 <Table.Td className="whitespace-nowrap">
-                  {element.invoice_no}
+                  {element.name}
                 </Table.Td>
                 <Table.Td className="whitespace-nowrap">
-                  {element.date_created}
+                  {element.email}
                 </Table.Td>
 
                 <Table.Td className="whitespace-nowrap">
-                  {element.company}
+                  {element.company_name}
                 </Table.Td>
                 <Table.Td className="whitespace-nowrap">
-                  {element.tracking_no}
+                  {element.label_purchased}
                 </Table.Td>
                 <Table.Td className="whitespace-nowrap">
-                  {element.amount}
+                  {element.paid}
+                </Table.Td>
+                <Table.Td className="whitespace-nowrap">
+                  {element.outstanding}
                 </Table.Td>
                 <Table.Td className="whitespace-nowrap">
                   <button
@@ -73,8 +82,25 @@ const InvoiceTable = ({ data }: IProps) => {
                     {element.status}
                   </button>
                 </Table.Td>
-                <Table.Td className="cursor-pointer" onClick={open}>
-                  <RiErrorWarningLine size={20} />
+                <Table.Td className="cursor-pointer">
+                  <Menu>
+                    <Menu.Target>
+                      <button>
+                        <SlOptionsVertical size={16} />
+                      </button>
+                    </Menu.Target>
+                    <Menu.Dropdown>
+                      <Menu.Item leftSection={<FaRegFileAlt />} onClick={open}>
+                        View Invoice details
+                      </Menu.Item>
+                      <Menu.Item
+                        leftSection={<RiErrorWarningLine />}
+                        onClick={() => navigate("/user-information")}
+                      >
+                        View company information
+                      </Menu.Item>
+                    </Menu.Dropdown>
+                  </Menu>
                 </Table.Td>
               </Table.Tr>
             ))}
@@ -82,9 +108,9 @@ const InvoiceTable = ({ data }: IProps) => {
         </Table>
       </div>
 
-      <div className="flex gap-5 justify-center mt-10">
+      <div className="flex flex-col sm:flex-row gap-5 justify-center items-center mt-10">
         <Pagination total={10} />
-        <div className="flex gap-2 items-center">
+        <div className="flex gap-2 items-center justify-center">
           <div>PerPage</div>
           <Select
             className="w-[70px]"

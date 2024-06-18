@@ -29,6 +29,7 @@ import AdminDetails from "../../pages/Authenticated/SuperAdminApp/AdminManagemen
 import MarkUp from "../../pages/Authenticated/SuperAdminApp/MarkUp";
 import AdminShippingLabel from "../../pages/Authenticated/SuperAdminApp/AdminShippingLabel";
 import Support from "../../pages/Authenticated/SuperAdminApp/Support";
+import AdminInvoice from "../../pages/Authenticated/SuperAdminApp/AdminInvoice";
 
 const Authenticated = () => {
   const [opened, { toggle }] = useDisclosure();
@@ -97,12 +98,18 @@ const Authenticated = () => {
                 )
               }
             />
+            <Route
+              path="/invoice"
+              element={
+                USER_TYPE === "customer" ? <Invoice /> : <AdminInvoice />
+              }
+            />
+
             {/* Customer App */}
             <Route path="/customer-data" element={<CustomerData />} />
             <Route path="/shipping-labels/purchase" element={<Purchase />} />
             <Route path="/orders-&-tracking" element={<OrderTracking />} />
             <Route path="/profile" element={<Profile />} />
-            <Route path="/invoice" element={<Invoice />} />
             <Route path="/payment-history" element={<PaymentHistory />} />
 
             {/* Super Admin App */}
