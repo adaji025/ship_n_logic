@@ -30,6 +30,7 @@ import MarkUp from "../../pages/Authenticated/SuperAdminApp/MarkUp";
 import AdminShippingLabel from "../../pages/Authenticated/SuperAdminApp/AdminShippingLabel";
 import Support from "../../pages/Authenticated/SuperAdminApp/Support";
 import AdminInvoice from "../../pages/Authenticated/SuperAdminApp/AdminInvoice";
+import CreateInvoice from "../../pages/Authenticated/SuperAdminApp/AdminInvoice/CreateInvoice";
 
 const Authenticated = () => {
   const [opened, { toggle }] = useDisclosure();
@@ -120,6 +121,7 @@ const Authenticated = () => {
             <Route path="/business-information" element={<BusinessInfo />} />
             <Route path="/mark-up" element={<MarkUp />} />
             <Route path="/support" element={<Support />} />
+            <Route path="/create-invoice" element={<CreateInvoice />} />
           </Routes>
         </div>
       </div>
