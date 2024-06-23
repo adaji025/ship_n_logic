@@ -10,7 +10,7 @@ const useNotification = () => {
       message: `User logged out Login in to continue 😑`,
       color: "Yellow",
     });
-    localStorage.clear();
+    localStorage.removeItem("_ship_n_logic");
     navigate("/");
   };
 
