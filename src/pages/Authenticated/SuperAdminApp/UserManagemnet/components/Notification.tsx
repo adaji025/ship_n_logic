@@ -14,11 +14,11 @@ const Notification = () => {
           <div className="flex justify-between gap-5 mb-3 mt-2">
             <div className="font-semibold text-sm">Notifications</div>
             <div className="text-sm font-medium text-primary">
-              Mark all as read
+              {/* Mark all as read */}
             </div>
           </div>
           <Divider />
-          {[...Array(7)].map((_, index) => (
+          {[...Array(1)].map((_, index) => (
             <div key={index}>
               <div className="flex justify-between items-end my-3">
                 <div>

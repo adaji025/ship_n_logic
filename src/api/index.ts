@@ -1,22 +1,25 @@
 import axios from "axios";
+import { refreshToken } from "../services/auth";
 
 function getToken() {
   let token = localStorage.getItem("_ship_n_logic") ?? null;
   return token;
 }
 
-let AxoisApi = axios.create({
+let AxiosApi = axios.create({
   baseURL: import.meta.env.VITE_APP_API,
 });
 
-AxoisApi.defaults.headers.common = {
+AxiosApi.defaults.headers.common = {
   "Content-Type": "application/json",
   "Access-Control-Allow-Origin": "*",
   Accept: "application/json",
 };
 
-AxoisApi.interceptors.response.use(
+AxiosApi.interceptors.response.use(
   function (response) {
+    console.log(" ==>", response.status);
+
     let datares = response.data;
     if (typeof datares == "object") {
       if (
@@ -31,11 +34,34 @@ AxoisApi.interceptors.response.use(
     return response;
   },
   function (error) {
+    const originalRequest = error.config;
+
+    if (error.response.status === 401 && !originalRequest._retry) {
+      originalRequest._retry = true;
+
+      const _refreshToken = localStorage.getItem("_ship_n_logic_refresh");
+
+      refreshToken({ refresh_token: _refreshToken }).then((res: any) => {
+        const newAccessToken = res.data.data.access_token;
+
+        AxiosApi.defaults.headers["Authorization"] =
+          "Bearer " + res.data.data.access_token;
+        window.localStorage.setItem(
+          "_ship_n_logic",
+          res.data.data.access_token
+        );
+
+        originalRequest.headers["Authorization"] = `Bearer ${newAccessToken}`;
+
+        // Retry the original request with the new token
+        return AxiosApi(originalRequest);
+      });
+    }
     return Promise.reject(error);
   }
 );
 
-AxoisApi.interceptors.request.use(function (config) {
+AxiosApi.interceptors.request.use(function (config) {
   if (getToken()) {
     config.headers.Authorization = `Bearer ${getToken()}`;
   }
@@ -43,4 +69,4 @@ AxoisApi.interceptors.request.use(function (config) {
   return config;
 });
 
-export default AxoisApi;
+export default AxiosApi;

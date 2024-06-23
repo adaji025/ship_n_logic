@@ -1,7 +1,19 @@
 import { Divider, Popover, ScrollArea } from "@mantine/core";
 import NotificationIcon from "../../assets/svg/notification.svg";
+import { getNotification } from "../../services/notification";
+import { useEffect } from "react";
 
 const Notification = () => {
+  useEffect(() => {
+    handleGetNotification();
+    console.log("first");
+  }, []);
+
+  const handleGetNotification = () => {
+    getNotification()
+      .then((res) => console.log(res))
+      .catch();
+  };
   return (
     <Popover width={400} position="bottom" withArrow shadow="md">
       <Popover.Target>
@@ -14,7 +26,7 @@ const Notification = () => {
           <div className="flex justify-between gap-5 mb-3 mt-2">
             <div className="font-semibold text-sm">Notifications</div>
             <div className="text-sm font-medium text-primary">
-              Mark all as read
+              Mark all as read !!!!!
             </div>
           </div>
           <Divider />

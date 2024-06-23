@@ -36,6 +36,7 @@ const useNotification = () => {
         color: "red",
       });
     }
+
     if (error.response.data.error === "Invalid Token") {
       logoutUser();
       return showNotification({

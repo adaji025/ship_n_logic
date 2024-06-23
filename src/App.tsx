@@ -10,8 +10,8 @@ export default function App() {
   const navigate = useNavigate();
   const token = localStorage.getItem("_ship_n_logic") ?? "";
 
-  if (token && location.pathname === "/") {
-    navigate("/dashboard");
+  if (token && location.pathname === "/sign-in") {
+    navigate("/");
   }
 
   return (
