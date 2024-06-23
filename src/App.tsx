@@ -15,16 +15,18 @@ export default function App() {
   }
 
   return (
-    <MantineProvider theme={{
-      primaryColor: "blue",
-      fontFamily: "Montserrat, sans-serif",
-      defaultRadius: 8,
-    }}>
-      <Notifications />
+    <MantineProvider
+      theme={{
+        primaryColor: "blue",
+        fontFamily: "Montserrat, sans-serif",
+        defaultRadius: 8,
+      }}
+    >
+      <Notifications position="top-right" />
       <Routes>
         <Route
           path="/*"
-          element={!token ? <Authenticated /> : <Unauthenticated />}
+          element={token ? <Authenticated /> : <Unauthenticated />}
         />
       </Routes>
     </MantineProvider>

@@ -25,7 +25,7 @@ const useNotification = () => {
     if (error) {
       return showNotification({
         title: "Error",
-        message: error.response.data.detail,
+        message: error.response.data.data.message,
         color: "red",
       });
     }

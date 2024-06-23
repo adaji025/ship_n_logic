@@ -1,15 +1,33 @@
 import { useState } from "react";
+import { useForm } from "@mantine/form";
 import { useNavigate } from "react-router-dom";
 import { CiLock, CiUnlock } from "react-icons/ci";
 import { Button, Checkbox } from "@mantine/core";
 import { BiLogoApple } from "react-icons/bi";
 import { FcGoogle } from "react-icons/fc";
 import Logo from "../../../assets/svg/logo.svg";
+import { userLogin } from "../../../services/auth";
 
 const Login = () => {
   const [seePw, setSeePw] = useState(false);
-
   const navigate = useNavigate();
+
+  const form = useForm({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+  });
+
+  const handleSubmit = (values: { email: string; password: string }) => {
+    userLogin(values)
+      .then((res: any) => {
+        console.log(res);
+      })
+      .catch((err: any) => {
+        console.log(err);
+      });
+  };
 
   return (
     <div className="auth-bg min-h-screen flex justify-center items-center w-full py-10">
@@ -27,7 +45,10 @@ const Login = () => {
             Sign up
           </span>
         </div>
-        <div className="grid gap-3 w-full mt-10">
+        <form
+          onSubmit={form.onSubmit(handleSubmit)}
+          className="grid gap-3 w-full mt-10"
+        >
           <div className="grid gap-1">
             <label className="text-sm text-[#545454]" htmlFor="email">
               Email
@@ -36,6 +57,7 @@ const Login = () => {
               type="email"
               placeholder="Enter Email"
               className="py-3 px-4 bg-[#F8F9FD] rounded-md outline-none"
+              {...form.getInputProps("email")}
             />
           </div>
           <div>
@@ -47,6 +69,7 @@ const Login = () => {
                 type={seePw ? "text" : "password"}
                 placeholder="********"
                 className="py-3 px-4 bg-[#F8F9FD] rounded-md outline-none"
+                {...form.getInputProps("password")}
               />
               {seePw && (
                 <CiLock
@@ -72,7 +95,12 @@ const Login = () => {
             </div>
           </div>
 
-          <Button size="lg" radius="md" className="bg-primary mt-3 font-light">
+          <Button
+            type="submit"
+            size="lg"
+            radius="md"
+            className="bg-primary mt-3 font-light"
+          >
             Log in
           </Button>
 
@@ -88,7 +116,7 @@ const Login = () => {
               <BiLogoApple size={20} />
             </div>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   );
