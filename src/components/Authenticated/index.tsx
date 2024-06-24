@@ -19,7 +19,6 @@ import OrderTracking from "../../pages/Authenticated/CustomerApp/OrderTracking";
 import Profile from "../../pages/Authenticated/CustomerApp/Profile";
 import Invoice from "../../pages/Authenticated/CustomerApp/Invoice";
 import PaymentHistory from "../../pages/Authenticated/CustomerApp/PaymentHistory";
-import { USER_TYPE } from "../../constant";
 import AdminDashboard from "../../pages/Authenticated/SuperAdminApp/Dashboard";
 import UserManagement from "../../pages/Authenticated/SuperAdminApp/UserManagemnet";
 import UserDetails from "../../pages/Authenticated/SuperAdminApp/UserManagemnet/UserDetails";
@@ -38,6 +37,7 @@ const Authenticated = () => {
 
   const isOpen = useSelector((state: RootState) => state.user.modal.isOpen);
   const close = () => dispatch(closeModal());
+  const { userData } = useSelector((state: RootState) => state.user.user);
 
   return (
     <Fragment>
@@ -85,14 +85,18 @@ const Authenticated = () => {
             <Route
               path="/"
               element={
-                USER_TYPE === "customer" ? <Dashboard /> : <AdminDashboard />
+                userData?.permission === "USER" ? (
+                  <Dashboard />
+                ) : (
+                  <AdminDashboard />
+                )
               }
             />
 
             <Route
               path="/shipping-labels"
               element={
-                USER_TYPE === "customer" ? (
+                userData?.permission === "USER" ? (
                   <ShippingLabels />
                 ) : (
                   <AdminShippingLabel />
@@ -102,7 +106,7 @@ const Authenticated = () => {
             <Route
               path="/invoice"
               element={
-                USER_TYPE === "customer" ? <Invoice /> : <AdminInvoice />
+                userData?.permission === "USER" ? <Invoice /> : <AdminInvoice />
               }
             />
 

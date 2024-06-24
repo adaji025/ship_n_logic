@@ -18,15 +18,9 @@ AxiosApi.defaults.headers.common = {
 
 AxiosApi.interceptors.response.use(
   function (response) {
-    console.log(" ==>", response.status);
-
-    let datares = response.data;
-    if (typeof datares == "object") {
-      if (
-        Number(datares?.status) === 400 ||
-        Number(datares?.status) === 401 ||
-        Number(datares?.status) === 500
-      ) {
+    const datares = response.data;
+    if (typeof datares === "object") {
+      if ([400, 401, 500].includes(Number(datares?.status))) {
         return Promise.reject(response);
       }
     }
@@ -44,12 +38,8 @@ AxiosApi.interceptors.response.use(
       refreshToken({ refresh_token: _refreshToken }).then((res: any) => {
         const newAccessToken = res.data.data.access_token;
 
-        AxiosApi.defaults.headers["Authorization"] =
-          "Bearer " + res.data.data.access_token;
-        window.localStorage.setItem(
-          "_ship_n_logic",
-          res.data.data.access_token
-        );
+        AxiosApi.defaults.headers["Authorization"] = "Bearer " + newAccessToken;
+        window.localStorage.setItem("_ship_n_logic", newAccessToken);
 
         originalRequest.headers["Authorization"] = `Bearer ${newAccessToken}`;
 

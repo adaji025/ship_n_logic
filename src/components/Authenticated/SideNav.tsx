@@ -14,9 +14,10 @@ import {
 } from "./Svg";
 import { CiLogout } from "react-icons/ci";
 import { Fragment, useEffect, useState } from "react";
-import { USER_TYPE } from "../../constant";
 import { useDisclosure } from "@mantine/hooks";
 import ConfirmLogout from "./ConfirmLogout";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
 
 interface IProps {
   opened: boolean;
@@ -26,13 +27,18 @@ interface IProps {
 const SideNav = ({ opened, close }: IProps) => {
   const [route, setRoute] = useState<any[]>([]);
   const [showLogoutModal, { open, close: closeLogoutModal }] = useDisclosure();
+
+  const { userData } = useSelector((state: RootState) => state.user.user);
+  
+  console.log(userData)
+
   const location = useLocation();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (USER_TYPE === "customer") {
+    if (userData?.permission === "USER") {
       setRoute(customerRoute);
-    } else if (USER_TYPE === "super_admin") {
+    } else if (userData?.permission === "SUPER_ADMIN") {
       setRoute(superAdminRoute);
     } else {
       setRoute(adminRoute);
