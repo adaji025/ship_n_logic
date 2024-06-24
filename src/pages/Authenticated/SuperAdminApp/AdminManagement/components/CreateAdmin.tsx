@@ -1,4 +1,5 @@
 import { Button, Modal, PasswordInput, Select, TextInput } from "@mantine/core";
+import { useForm } from "@mantine/form";
 import { useState } from "react";
 
 interface IProps {
@@ -8,6 +9,17 @@ interface IProps {
 
 const CreateAdmin = ({ close, opened }: IProps) => {
   const [continues, setContinues] = useState(false);
+
+  const form = useForm({
+    initialValues: {
+      full_name: "",
+      email: "",
+      phone_number: "",
+      gender: "",
+      permission: "",
+      password: "",
+    },
+  });
   return (
     <Modal
       overlayProps={{
@@ -30,67 +42,70 @@ const CreateAdmin = ({ close, opened }: IProps) => {
         </div>
       }
     >
-      {!continues && (
-        <>
-          <TextInput size="md" label="Name" placeholder="Enter name" />
-          <TextInput
-            type="email"
-            mt="sm"
-            size="md"
-            label="Email"
-            placeholder="Enter email"
-          />
-          <TextInput
-            mt="sm"
-            size="md"
-            label="Phone number"
-            placeholder="Enter Phone number"
-          />
-          <Select
-            size="md"
-            mt="sm"
-            label="Gender"
-            placeholder="Select gender"
-            data={[
-              { label: "Male", value: "Male" },
-              { label: "Female", value: "Female" },
-            ]}
-          />
+      <form>
+        {!continues && (
+          <>
+            <TextInput size="md" label="Name" placeholder="Enter name" />
+            <TextInput
+              type="email"
+              mt="sm"
+              size="md"
+              label="Email"
+              placeholder="Enter email"
+              {...form.getInputProps("email")}
+            />
+            <TextInput
+              mt="sm"
+              size="md"
+              label="Phone number"
+              placeholder="Enter Phone number"
+            />
+            <Select
+              size="md"
+              mt="sm"
+              label="Gender"
+              placeholder="Select gender"
+              data={[
+                { label: "Male", value: "Male" },
+                { label: "Female", value: "Female" },
+              ]}
+            />
 
-          <Select
-            size="md"
-            mt="sm"
-            label="Permission"
-            placeholder="Select Permission"
-            data={[
-              { label: "Admin", value: "Admin" },
-              { label: "Super Admin", value: "Super Admin" },
-            ]}
-          />
-        </>
-      )}
+            <Select
+              size="md"
+              mt="sm"
+              label="Permission"
+              placeholder="Select Permission"
+              data={[
+                { label: "Admin", value: "Admin" },
+                { label: "Super Admin", value: "Super Admin" },
+              ]}
+            />
+          </>
+        )}
 
-      {
-        <>
-          <PasswordInput size="md" label="Password" placeholder="********" />
-          <PasswordInput
-            size="md"
-            mt="md"
-            label="Confirm Password"
-            placeholder="********"
-          />
-        </>
-      }
+        {continues && (
+          <>
+            <PasswordInput size="md" label="Password" placeholder="********" />
+            <PasswordInput
+              size="md"
+              mt="md"
+              label="Confirm Password"
+              placeholder="********"
+            />
+          </>
+        )}
 
-      <Button
-        mt={32}
-        mb={24}
-        size="md"
-        className="w-full mx-auto bg-primary"
-        onClick={() => setContinues(true)}
-      >
-        {continues ? "Create admin" : "Continue"}
-      </Button>
+        <Button
+          mt={32}
+          mb={24}
+          size="md"
+          className="w-full mx-auto bg-primary"
+          onClick={() => setContinues(true)}
+        >
+          {continues ? "Create admin" : "Continue"}
+        </Button>
+      </form>
     </Modal>
   );
 };

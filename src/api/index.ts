@@ -1,6 +1,5 @@
 import axios from "axios";
 import { refreshToken } from "../services/auth";
-
 function getToken() {
   let token = localStorage.getItem("_ship_n_logic") ?? null;
   return token;
@@ -28,6 +27,8 @@ AxiosApi.interceptors.response.use(
     return response;
   },
   function (error) {
+    // const navigate = useNavigate();
+
     const originalRequest = error.config;
 
     if (error.response.status === 401 && !originalRequest._retry) {
@@ -35,17 +36,23 @@ AxiosApi.interceptors.response.use(
 
       const _refreshToken = localStorage.getItem("_ship_n_logic_refresh");
 
-      refreshToken({ refresh_token: _refreshToken }).then((res: any) => {
-        const newAccessToken = res.data.data.access_token;
+      refreshToken({ refresh_token: _refreshToken })
+        .then((res: any) => {
+          const newAccessToken = res.data.data.access_token;
 
-        AxiosApi.defaults.headers["Authorization"] = "Bearer " + newAccessToken;
-        window.localStorage.setItem("_ship_n_logic", newAccessToken);
+          AxiosApi.defaults.headers["Authorization"] =
+            "Bearer " + newAccessToken;
+          window.localStorage.setItem("_ship_n_logic", newAccessToken);
 
-        originalRequest.headers["Authorization"] = `Bearer ${newAccessToken}`;
+          originalRequest.headers["Authorization"] = `Bearer ${newAccessToken}`;
 
-        // Retry the original request with the new token
-        return AxiosApi(originalRequest);
-      });
+          // Retry the original request with the new token
+          return AxiosApi(originalRequest);
+        })
+        .catch((err) => {
+          // err.response.status === 401 && navigate("/");
+          console.log(err)
+        });
     }
     return Promise.reject(error);
   }

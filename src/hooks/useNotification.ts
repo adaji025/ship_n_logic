@@ -54,7 +54,7 @@ const useNotification = () => {
       });
     }
 
-    if (error?.response?.status === 401 || error?.response?.status === 403) {
+    if (error?.response?.status === 401) {
       showNotification({
         title: "Error",
         message: "Unauthorized access",

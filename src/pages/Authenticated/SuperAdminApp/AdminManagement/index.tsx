@@ -35,6 +35,7 @@ const AdminManagement = () => {
       status: "suspended",
     },
   ];
+
   return (
     <div>
       <Header />

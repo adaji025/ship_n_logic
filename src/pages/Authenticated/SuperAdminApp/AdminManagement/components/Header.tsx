@@ -35,7 +35,7 @@ const Header = () => {
         </div>
         <div className="flex items-center gap-5 md:gap-10">
           <Button className="bg-primary px-8" onClick={openDisableAccount}>
-            Admin Management
+            Add New Admin
           </Button>
           <Notification />
           <div className="flex items-center gap-5">

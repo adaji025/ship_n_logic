@@ -29,8 +29,8 @@ const SideNav = ({ opened, close }: IProps) => {
   const [showLogoutModal, { open, close: closeLogoutModal }] = useDisclosure();
 
   const { userData } = useSelector((state: RootState) => state.user.user);
-  
-  console.log(userData)
+
+  console.log(userData);
 
   const location = useLocation();
   const navigate = useNavigate();

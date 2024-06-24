@@ -18,18 +18,21 @@ export const userLogin = (data: any) => {
   });
 };
 
-export const refreshToken = (data: any) => {
+
+
+export const adminLogin = (data: any) => {
   return new Promise((resolve, reject) => {
-    axios
-      .post(`${APIS.USER}/token`, data)
+    AxoisApi.post(`${APIS.ADMIN}/login`, data)
       .then((res) => resolve(res))
       .catch((err) => reject(err));
   });
 };
 
-export const adminLogin = (data: any) => {
+
+export const refreshToken = (data: any) => {
   return new Promise((resolve, reject) => {
-    AxoisApi.post(`${APIS.ADMIN}/login`, data)
+    axios
+      .post(`${APIS.ADMIN}/token`, data)
       .then((res) => resolve(res))
       .catch((err) => reject(err));
   });

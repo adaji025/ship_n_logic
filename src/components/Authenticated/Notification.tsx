@@ -2,17 +2,27 @@ import { Divider, Popover, ScrollArea } from "@mantine/core";
 import NotificationIcon from "../../assets/svg/notification.svg";
 import { getNotification } from "../../services/notification";
 import { useEffect } from "react";
+import useNotification from "../../hooks/useNotification";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
 
 const Notification = () => {
+  const { userData } = useSelector((state: RootState) => state.user.user);
+
   useEffect(() => {
     handleGetNotification();
-    console.log("first");
   }, []);
 
+  const { handleError } = useNotification();
+
   const handleGetNotification = () => {
-    getNotification()
-      .then((res) => console.log(res))
-      .catch();
+    userData?.permission === "USER" &&
+      getNotification()
+        .then((res) => console.log(res))
+        .catch((err: any) => {
+          handleError(err);
+          console.log(err);
+        });
   };
   return (
     <Popover width={400} position="bottom" withArrow shadow="md">
