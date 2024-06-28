@@ -118,7 +118,7 @@ const SideNav = ({ opened, close }: IProps) => {
     {
       name: "Legal Documents",
       icon: <DocIcon />,
-      url: "/legal-ducuments",
+      url: "/legal-documents",
     },
     {
       name: "Support",

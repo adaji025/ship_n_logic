@@ -30,6 +30,8 @@ import AdminShippingLabel from "../../pages/Authenticated/SuperAdminApp/AdminShi
 import Support from "../../pages/Authenticated/SuperAdminApp/Support";
 import AdminInvoice from "../../pages/Authenticated/SuperAdminApp/AdminInvoice";
 import CreateInvoice from "../../pages/Authenticated/SuperAdminApp/AdminInvoice/CreateInvoice";
+import Software from "../../pages/Authenticated/SuperAdminApp/Software";
+import LegalDocument from "../../pages/Authenticated/SuperAdminApp/LegalDocuments";
 
 const Authenticated = () => {
   const [opened, { toggle }] = useDisclosure();
@@ -126,6 +128,8 @@ const Authenticated = () => {
             <Route path="/mark-up" element={<MarkUp />} />
             <Route path="/support" element={<Support />} />
             <Route path="/create-invoice" element={<CreateInvoice />} />
+            <Route path="/software" element={<Software />} />
+            <Route path="/legal-documents" element={<LegalDocument />} />
           </Routes>
         </div>
       </div>
