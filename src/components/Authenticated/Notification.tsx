@@ -1,16 +1,22 @@
 import { Divider, Popover, ScrollArea } from "@mantine/core";
 import NotificationIcon from "../../assets/svg/notification.svg";
-import { getNotification } from "../../services/notification";
-import { useEffect } from "react";
+import {
+  getAdminNotification,
+  getNotification,
+} from "../../services/notification";
+import { useEffect, useState } from "react";
 import useNotification from "../../hooks/useNotification";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
+import { NotificationTypes } from "../../types/notification";
 
 const Notification = () => {
   const { userData } = useSelector((state: RootState) => state.user.user);
+  const [notification, setNotification] = useState<NotificationTypes[]>([]);
 
   useEffect(() => {
     handleGetNotification();
+    handleGetAdminNotification();
   }, []);
 
   const { handleError } = useNotification();
@@ -18,12 +24,23 @@ const Notification = () => {
   const handleGetNotification = () => {
     userData?.permission === "USER" &&
       getNotification()
-        .then((res) => console.log(res))
+        .then((res: any) => setNotification(res.data.data.notifications))
         .catch((err: any) => {
           handleError(err);
-          console.log(err);
         });
   };
+
+  const handleGetAdminNotification = () => {
+    userData?.permission !== "USER" &&
+      getAdminNotification()
+        .then((res: any) => setNotification(res.data.data.notifications))
+        .catch((err: any) => {
+          handleError(err);
+        });
+  };
+
+  console.log(notification);
+
   return (
     <Popover width={400} position="bottom" withArrow shadow="md">
       <Popover.Target>
@@ -32,7 +49,7 @@ const Notification = () => {
         </button>
       </Popover.Target>
       <Popover.Dropdown>
-        <ScrollArea h={400} pr={16}>
+        <ScrollArea h={notification.length > 3 ? 400 : 200} pr={16}>
           <div className="flex justify-between gap-5 mb-3 mt-2">
             <div className="font-semibold text-sm">Notifications</div>
             <div className="text-sm font-medium text-primary">
@@ -40,7 +57,12 @@ const Notification = () => {
             </div>
           </div>
           <Divider />
-          {[...Array(7)].map((_, index) => (
+          {notification.length < 1 && (
+            <div className="flex capitalize font-medium justify-center items-center mt-5 text-sm">
+              You have no notification
+            </div>
+          )}
+          {notification.map((_, index) => (
             <div key={index}>
               <div className="flex justify-between items-end my-3">
                 <div>

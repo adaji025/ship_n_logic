@@ -3,9 +3,9 @@ import { IoChevronForward } from "react-icons/io5";
 import { CgMenuLeftAlt } from "react-icons/cg";
 import { useDispatch } from "react-redux";
 import { openModal } from "../../../../../redux/features/modalSlice";
-import Notification from "./Notification";
 import { FaRegUser } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import Notification from "../../../../../components/Authenticated/Notification";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -39,8 +39,10 @@ const Header = () => {
               </button>
             </Menu.Target>
             <Menu.Dropdown className="mt-2">
-              <Menu.Item leftSection={<FaRegUser color="#333333" />}
-              onClick={() => navigate("/profile")}>
+              <Menu.Item
+                leftSection={<FaRegUser color="#333333" />}
+                onClick={() => navigate("/profile")}
+              >
                 View profile
               </Menu.Item>
             </Menu.Dropdown>

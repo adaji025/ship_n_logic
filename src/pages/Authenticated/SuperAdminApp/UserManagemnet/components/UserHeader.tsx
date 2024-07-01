@@ -4,12 +4,12 @@ import { CgMenuLeftAlt } from "react-icons/cg";
 import { useDispatch } from "react-redux";
 import { openModal } from "../../../../../redux/features/modalSlice";
 import { HiOutlineChevronLeft } from "react-icons/hi2";
-import Notification from "./Notification";
 import { useNavigate } from "react-router-dom";
 import { Fragment } from "react/jsx-runtime";
 import DisableAccount from "../../../../../components/Authenticated/Confirmation";
 import { useDisclosure } from "@mantine/hooks";
 import { FaRegUser } from "react-icons/fa";
+import Notification from "../../../../../components/Authenticated/Notification";
 
 const Header = () => {
   const [opened, { open: openDisableAccount, close }] = useDisclosure();
@@ -17,7 +17,7 @@ const Header = () => {
   const dispatch = useDispatch();
   const open = () => dispatch(openModal());
   const navigate = useNavigate();
-  
+
   return (
     <Fragment>
       <DisableAccount
