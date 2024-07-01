@@ -1,11 +1,11 @@
 import { Avatar, Menu } from "@mantine/core";
-import NotificationIcon from "../../../../../assets/svg/notification.svg";
 import { IoChevronForward } from "react-icons/io5";
 import { CgMenuLeftAlt } from "react-icons/cg";
 import { useDispatch } from "react-redux";
 import { openModal } from "../../../../../redux/features/modalSlice";
 import { FaRegUser } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import Notification from "../../../../../components/Authenticated/Notification";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -31,9 +31,7 @@ const Header = () => {
         </div>
       </div>
       <div className="flex items-center gap-5 md:gap-10">
-        <div>
-          <img src={NotificationIcon} alt="" />
-        </div>
+        <Notification />
         <div>?</div>
         <div className="flex items-center gap-5">
           <Avatar size="md" />

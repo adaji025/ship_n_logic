@@ -49,7 +49,7 @@ const Notification = () => {
         </button>
       </Popover.Target>
       <Popover.Dropdown>
-        <ScrollArea h={notification.length < 1 ? 100 : 400} pr={16}>
+        <ScrollArea h={notification.length > 3 ? 400 : 200} pr={16}>
           <div className="flex justify-between gap-5 mb-3 mt-2">
             <div className="font-semibold text-sm">Notifications</div>
             <div className="text-sm font-medium text-primary">
