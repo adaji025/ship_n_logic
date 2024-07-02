@@ -30,8 +30,6 @@ const SideNav = ({ opened, close }: IProps) => {
 
   const { userData } = useSelector((state: RootState) => state.user.user);
 
-  console.log(userData);
-
   const location = useLocation();
   const navigate = useNavigate();
 

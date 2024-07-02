@@ -1,5 +1,8 @@
 import axios from "axios";
 import { refreshToken } from "../services/auth";
+import { useNavigate } from "react-router-dom";
+import useNotification from "../hooks/useNotification";
+
 function getToken() {
   let token = localStorage.getItem("_ship_n_logic") ?? null;
   return token;
@@ -27,7 +30,7 @@ AxiosApi.interceptors.response.use(
     return response;
   },
   function (error) {
-    // const navigate = useNavigate();
+    const { logoutUser } = useNotification();
 
     const originalRequest = error.config;
 
@@ -50,8 +53,10 @@ AxiosApi.interceptors.response.use(
           return AxiosApi(originalRequest);
         })
         .catch((err) => {
-          // err.response.status === 401 && navigate("/");
-          console.log(err)
+          // err.response.status === 401 &&
+          //   localStorage.removeItem("_ship_n_logic");
+          //   err.response.status === 401 && navigate("/");
+          console.log(err.response.status);
         });
     }
     return Promise.reject(error);

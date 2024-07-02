@@ -1,14 +1,9 @@
-import {
-  Avatar,
-  Button,
-  PasswordInput,
-  Switch,
-  TextInput,
-} from "@mantine/core";
+import { Avatar, Button, Switch, TextInput } from "@mantine/core";
 import { PiWarningCircleThin } from "react-icons/pi";
 import { HiMiniLink } from "react-icons/hi2";
 import Header from "./components/Header";
 import SuccessIcon from "../../../../assets/svg/success-rough.svg";
+import ChangePassword from "./components/ChangePassword";
 
 const Profile = () => {
   return (
@@ -52,35 +47,7 @@ const Profile = () => {
         Update profile
       </Button>
 
-      <div className="py-5 px-10 bg-white rounded-xl">
-        <div className="font-medium">Update Password</div>
-        <div className="mt-5 grid gap-y-5 gap-x-20 sm:grid-cols-2">
-          <PasswordInput
-            size="md"
-            placeholder="*********"
-            label="Current password"
-          />
-          <PasswordInput
-            size="md"
-            placeholder="*********"
-            label="New password"
-          />
-          <PasswordInput
-            size="md"
-            placeholder="*********"
-            label="Confirm password"
-          />
-          <div className="mt-3">
-            <Button
-              variant="outline"
-              size="md"
-              className="border-primary px-10 my-5"
-            >
-              Update profile
-            </Button>
-          </div>
-        </div>
-      </div>
+      <ChangePassword />
 
       <div className="py-5 px-10 bg-white rounded-xl mt-10">
         <div className="font-medium">Notification</div>
