@@ -8,17 +8,9 @@ import SideNav from "./SideNav";
 import { Fragment } from "react";
 import { Drawer } from "@mantine/core";
 import { Route, Routes } from "react-router-dom";
-import Dashboard from "../../pages/Authenticated/CustomerApp/Dashboard";
-import CustomerData from "../../pages/Authenticated/CustomerApp/Customer";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import { closeModal } from "../../redux/features/modalSlice";
-import ShippingLabels from "../../pages/Authenticated/CustomerApp/ShippingLabels";
-import Purchase from "../../pages/Authenticated/CustomerApp/ShippingLabels/Purchase";
-import OrderTracking from "../../pages/Authenticated/CustomerApp/OrderTracking";
-import Profile from "../../pages/Authenticated/CustomerApp/Profile";
-import Invoice from "../../pages/Authenticated/CustomerApp/Invoice";
-import PaymentHistory from "../../pages/Authenticated/CustomerApp/PaymentHistory";
 import AdminDashboard from "../../pages/Authenticated/SuperAdminApp/Dashboard";
 import UserManagement from "../../pages/Authenticated/SuperAdminApp/UserManagemnet";
 import UserDetails from "../../pages/Authenticated/SuperAdminApp/UserManagemnet/UserDetails";
@@ -87,37 +79,23 @@ const Authenticated = () => {
             <Route
               path="/"
               element={
-                userData?.permission === "USER" ? (
-                  <Dashboard />
+                userData?.permission === "ADMIN" ? (
+                  <UserManagement />
                 ) : (
                   <AdminDashboard />
                 )
               }
             />
 
-            <Route
-              path="/shipping-labels"
-              element={
-                userData?.permission === "USER" ? (
-                  <ShippingLabels />
-                ) : (
-                  <AdminShippingLabel />
-                )
-              }
-            />
-            <Route
-              path="/invoice"
-              element={
-                userData?.permission === "USER" ? <Invoice /> : <AdminInvoice />
-              }
-            />
+            <Route path="/shipping-labels" element={<AdminShippingLabel />} />
+            <Route path="/invoice" element={<AdminInvoice />} />
 
             {/* Customer App */}
-            <Route path="/customer-data" element={<CustomerData />} />
+            {/* <Route path="/customer-data" element={<CustomerData />} />
             <Route path="/shipping-labels/purchase" element={<Purchase />} />
             <Route path="/orders-&-tracking" element={<OrderTracking />} />
             <Route path="/profile" element={<Profile />} />
-            <Route path="/payment-history" element={<PaymentHistory />} />
+            <Route path="/payment-history" element={<PaymentHistory />} /> */}
 
             {/* Super Admin App */}
             <Route path="/admin-management" element={<AdminManagement />} />

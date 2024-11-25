@@ -3,8 +3,11 @@ import AdminTable from "./components/AdminTable";
 import Header from "./components/Header";
 import { Menu, TextInput } from "@mantine/core";
 import { CiSearch } from "react-icons/ci";
+import { useEffect } from "react";
+import { getAdmins } from "../../../../services/adminMgt";
 
 const AdminManagement = () => {
+  
   const data = [
     {
       permission: "Admin",
@@ -35,6 +38,20 @@ const AdminManagement = () => {
       status: "suspended",
     },
   ];
+
+  useEffect(() => {
+    handleGetUsers();
+  }, []);
+
+  const handleGetUsers = () => {
+    getAdmins(1, 10)
+      .then((res: any) => {
+        console.log(res);
+      })
+      .catch((err: any) => {
+        console.log(err);
+      });
+  };
 
   return (
     <div>

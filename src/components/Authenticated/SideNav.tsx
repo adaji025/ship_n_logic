@@ -129,7 +129,7 @@ const SideNav = ({ opened, close }: IProps) => {
     {
       name: "User Management",
       icon: <UserIcon />,
-      url: "/user-management",
+      url: "/",
     },
 
     {

@@ -3,8 +3,12 @@ import Header from "./components/Header";
 import { CiSearch } from "react-icons/ci";
 import { IoChevronDownSharp } from "react-icons/io5";
 import UserTable from "./components/UserTable";
+import { getUsers } from "../../../../services/adminMgt";
+import { useEffect, useState } from "react";
+import { UserState } from "../../../../types/user";
 
 const UserManagement = () => {
+  const [users, setUsers] = useState<UserState>({} as UserState);
   const data = [
     {
       name: "Anna Miller",
@@ -39,6 +43,20 @@ const UserManagement = () => {
       status: "verified",
     },
   ];
+
+  useEffect(() => {
+    handleGetUsers()
+  }, [])
+
+  const handleGetUsers = () => {
+    getUsers(1, 10).then((res: any) => {
+      setUsers(res.data.data)
+    }).catch((err: any) => {
+      console.log(err)
+    })
+  }
+
+  console.log(users.users)
   return (
     <div>
       <Header />
