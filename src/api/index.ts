@@ -1,5 +1,6 @@
 import axios from "axios";
 import { refreshToken } from "../services/auth";
+
 function getToken() {
   let token = localStorage.getItem("_ship_n_logic") ?? null;
   return token;
@@ -27,8 +28,6 @@ AxiosApi.interceptors.response.use(
     return response;
   },
   function (error) {
-    // const navigate = useNavigate();
-
     const originalRequest = error.config;
 
     if (error.response.status === 401 && !originalRequest._retry) {
@@ -50,8 +49,10 @@ AxiosApi.interceptors.response.use(
           return AxiosApi(originalRequest);
         })
         .catch((err) => {
-          // err.response.status === 401 && navigate("/");
-          console.log(err)
+          // err.response.status === 401 &&
+          //   localStorage.removeItem("_ship_n_logic");
+          //   err.response.status === 401 && navigate("/");
+          console.log(err.response.status);
         });
     }
     return Promise.reject(error);

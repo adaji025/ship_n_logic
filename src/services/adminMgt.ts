@@ -13,3 +13,27 @@ export const createAdmin = (data: CreateAdminsProps) => {
       });
   });
 };
+
+export const getAdmins = (page: number, size: number) => {
+  return new Promise((resolve, reject) => {
+    AxiosApi.get(`${APIS.ADMIN}?page=${page}&size=${size}`)
+      .then((res) => {
+        resolve(res);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};
+
+export const getUsers = (page: number, size: number) => {
+  return new Promise((resolve, reject) => {
+    AxiosApi.get(`${APIS.ADMIN}/users?page=${page}&size=${size}`)
+      .then((res) => {
+        resolve(res);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};

@@ -39,8 +39,6 @@ const Notification = () => {
         });
   };
 
-  console.log(notification);
-
   return (
     <Popover width={400} position="bottom" withArrow shadow="md">
       <Popover.Target>
